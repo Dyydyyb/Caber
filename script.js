@@ -320,10 +320,10 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    // Auto Advance every 3.5 seconds
+    // Auto Advance every 2.4 seconds (más rápido y dinámico)
     const startAutoPlay = () => {
       if (!autoPlayTimer) {
-        autoPlayTimer = setInterval(nextSlide, 3500);
+        autoPlayTimer = setInterval(nextSlide, 2400);
       }
     };
 

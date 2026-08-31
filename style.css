@@ -309,32 +309,43 @@ body {
 /* ==========================================================================
    3D COVERFLOW SLIDER DE TATUAJES
    Zoomed active central slide + background depth side slides
+   Optimizado para vista móvil y desktop
    ========================================================================== */
 .coverflow-container {
-  perspective: 1200px;
+  perspective: 1000px;
+  touch-action: pan-y;
 }
 
 .coverflow-slide {
   position: absolute;
-  width: 250px;
-  height: 340px;
-  border-radius: 18px;
+  width: 200px;
+  height: 280px;
+  border-radius: 14px;
   overflow: hidden;
   border: 1px solid var(--border-color);
   background: var(--bg-surface);
   cursor: pointer;
-  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1),
-              opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1),
-              filter 0.6s cubic-bezier(0.25, 1, 0.5, 1),
-              box-shadow 0.6s cubic-bezier(0.25, 1, 0.5, 1),
-              border-color 0.4s ease;
+  transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1),
+              opacity 0.45s cubic-bezier(0.25, 1, 0.5, 1),
+              filter 0.45s cubic-bezier(0.25, 1, 0.5, 1),
+              box-shadow 0.45s cubic-bezier(0.25, 1, 0.5, 1),
+              border-color 0.3s ease;
   user-select: none;
+  -webkit-user-select: none;
+}
+
+@media (min-width: 480px) {
+  .coverflow-slide {
+    width: 230px;
+    height: 320px;
+    border-radius: 16px;
+  }
 }
 
 @media (min-width: 640px) {
   .coverflow-slide {
-    width: 290px;
-    height: 400px;
+    width: 280px;
+    height: 390px;
   }
 }
 
@@ -342,6 +353,7 @@ body {
   .coverflow-slide {
     width: 320px;
     height: 440px;
+    border-radius: 18px;
   }
 }
 
@@ -357,11 +369,18 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 16px;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.4) 70%, transparent 100%);
+  padding: 12px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.5) 70%, transparent 100%);
   opacity: 0;
-  transform: translateY(10px);
+  transform: translateY(8px);
   transition: var(--transition-smooth);
+}
+
+@media (min-width: 640px) {
+  .slide-caption {
+    padding: 16px;
+    transform: translateY(10px);
+  }
 }
 
 .coverflow-slide.active .slide-caption {
@@ -372,23 +391,36 @@ body {
 /* Slide 3D Positions */
 /* Center / Zoomed Active */
 .coverflow-slide.active {
-  transform: translateX(0) scale(1.15);
+  transform: translateX(0) scale(1.12);
   z-index: 30;
   opacity: 1;
   filter: brightness(1.05) contrast(1.05);
-  border-color: rgba(255, 255, 255, 0.3);
-  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.9), 0 0 25px rgba(0, 0, 0, 0.8);
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 14px 30px -8px rgba(0, 0, 0, 0.95), 0 0 20px rgba(0, 0, 0, 0.7);
+}
+
+@media (min-width: 640px) {
+  .coverflow-slide.active {
+    transform: translateX(0) scale(1.16);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.9), 0 0 25px rgba(0, 0, 0, 0.8);
+  }
 }
 
 /* Left Immediate */
 .coverflow-slide.prev-1 {
-  transform: translateX(-55%) scale(0.88) rotateY(18deg);
+  transform: translateX(-48%) scale(0.85) rotateY(16deg);
   z-index: 20;
-  opacity: 0.65;
-  filter: brightness(0.7) blur(1px);
+  opacity: 0.6;
+  filter: brightness(0.65) blur(1px);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 640px) {
+  .coverflow-slide.prev-1 {
+    transform: translateX(-65%) scale(0.88) rotateY(20deg);
+  }
+}
+
+@media (min-width: 1024px) {
   .coverflow-slide.prev-1 {
     transform: translateX(-80%) scale(0.88) rotateY(22deg);
   }
@@ -396,13 +428,19 @@ body {
 
 /* Right Immediate */
 .coverflow-slide.next-1 {
-  transform: translateX(55%) scale(0.88) rotateY(-18deg);
+  transform: translateX(48%) scale(0.85) rotateY(-16deg);
   z-index: 20;
-  opacity: 0.65;
-  filter: brightness(0.7) blur(1px);
+  opacity: 0.6;
+  filter: brightness(0.65) blur(1px);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 640px) {
+  .coverflow-slide.next-1 {
+    transform: translateX(65%) scale(0.88) rotateY(-20deg);
+  }
+}
+
+@media (min-width: 1024px) {
   .coverflow-slide.next-1 {
     transform: translateX(80%) scale(0.88) rotateY(-22deg);
   }
@@ -410,13 +448,19 @@ body {
 
 /* Left Further */
 .coverflow-slide.prev-2 {
-  transform: translateX(-100%) scale(0.72) rotateY(32deg);
+  transform: translateX(-88%) scale(0.7) rotateY(26deg);
   z-index: 10;
-  opacity: 0.3;
-  filter: brightness(0.4) blur(2.5px);
+  opacity: 0.25;
+  filter: brightness(0.35) blur(2px);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 640px) {
+  .coverflow-slide.prev-2 {
+    transform: translateX(-125%) scale(0.72) rotateY(30deg);
+  }
+}
+
+@media (min-width: 1024px) {
   .coverflow-slide.prev-2 {
     transform: translateX(-155%) scale(0.72) rotateY(35deg);
   }
@@ -424,13 +468,19 @@ body {
 
 /* Right Further */
 .coverflow-slide.next-2 {
-  transform: translateX(100%) scale(0.72) rotateY(-32deg);
+  transform: translateX(88%) scale(0.7) rotateY(-26deg);
   z-index: 10;
-  opacity: 0.3;
-  filter: brightness(0.4) blur(2.5px);
+  opacity: 0.25;
+  filter: brightness(0.35) blur(2px);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 640px) {
+  .coverflow-slide.next-2 {
+    transform: translateX(125%) scale(0.72) rotateY(-30deg);
+  }
+}
+
+@media (min-width: 1024px) {
   .coverflow-slide.next-2 {
     transform: translateX(155%) scale(0.72) rotateY(-35deg);
   }
@@ -438,14 +488,14 @@ body {
 
 /* Hidden Far Slides */
 .coverflow-slide.hidden-far-left {
-  transform: translateX(-220%) scale(0.5);
+  transform: translateX(-180%) scale(0.45);
   z-index: 1;
   opacity: 0;
   pointer-events: none;
 }
 
 .coverflow-slide.hidden-far-right {
-  transform: translateX(220%) scale(0.5);
+  transform: translateX(180%) scale(0.45);
   z-index: 1;
   opacity: 0;
   pointer-events: none;
@@ -457,8 +507,8 @@ body {
   top: 50%;
   transform: translateY(-50%);
   z-index: 40;
-  width: 44px;
-  height: 44px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   background: rgba(18, 18, 21, 0.85);
   border: 1px solid var(--border-color);
@@ -470,41 +520,70 @@ body {
   transition: var(--transition-smooth);
 }
 
+@media (min-width: 640px) {
+  .coverflow-arrow {
+    width: 44px;
+    height: 44px;
+  }
+}
+
 .coverflow-arrow:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.12);
   border-color: var(--border-strong);
-  transform: translateY(-50%) scale(1.1);
+  transform: translateY(-50%) scale(1.08);
 }
 
 .left-arrow {
-  left: 8px;
+  left: 4px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 640px) {
+  .left-arrow { left: 16px; }
+}
+
+@media (min-width: 1024px) {
   .left-arrow { left: 24px; }
 }
 
 .right-arrow {
-  right: 8px;
+  right: 4px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 640px) {
+  .right-arrow { right: 16px; }
+}
+
+@media (min-width: 1024px) {
   .right-arrow { right: 24px; }
 }
 
 /* Slider Indicator Dots */
 .slider-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 4px;
+  width: 6px;
+  height: 6px;
+  border-radius: 3px;
   background: rgba(255, 255, 255, 0.2);
   cursor: pointer;
   transition: var(--transition-smooth);
 }
 
+@media (min-width: 640px) {
+  .slider-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 4px;
+  }
+}
+
 .slider-dot.active {
-  width: 24px;
+  width: 18px;
   background: var(--color-crimson);
+}
+
+@media (min-width: 640px) {
+  .slider-dot.active {
+    width: 24px;
+  }
 }
 
 /* ==========================================================================
