@@ -7,17 +7,26 @@ document.addEventListener('DOMContentLoaded', () => {
   const WHATSAPP_PHONE = '5491127233546';
 
   // -------------------------------------------------------------
-  // 1. Header Scrolled State
+  // 1. Header Scrolled State (Optimized with requestAnimationFrame)
   // -------------------------------------------------------------
   const header = document.getElementById('mainHeader');
+  let ticking = false;
+
   const updateHeaderScroll = () => {
-    if (window.scrollY > 40) {
+    if (window.scrollY > 30) {
       header.classList.add('scrolled');
     } else {
       header.classList.remove('scrolled');
     }
+    ticking = false;
   };
-  window.addEventListener('scroll', updateHeaderScroll, { passive: true });
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(updateHeaderScroll);
+      ticking = true;
+    }
+  }, { passive: true });
   updateHeaderScroll();
 
   // -------------------------------------------------------------

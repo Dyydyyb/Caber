@@ -206,11 +206,19 @@ section, header, footer, main {
   border-color: var(--border-strong);
 }
 
-/* Map Dark Theme Filter */
+/* Map Dark Theme Filter with GPU acceleration */
 .map-dark {
   filter: grayscale(100%) invert(92%) contrast(85%);
   border-radius: 12px;
   border: 1px solid var(--border-color);
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Prevent iframes from hijacking touch scroll events on mobile */
+.map-container {
+  position: relative;
+  touch-action: pan-y;
 }
 
 /* Portfolio Filters */
@@ -602,52 +610,71 @@ section, header, footer, main {
 }
 
 /* ==========================================================================
+   PERFORMANCE & SMOOTH SCROLL OPTIMIZATIONS
+   ========================================================================== */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+img {
+  content-visibility: auto;
+}
+
+.gallery-item, .studio-card, .coverflow-slide {
+  transform: translateZ(0);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
+/* ==========================================================================
    SCROLL REVEAL ANIMATIONS (SAFE OVERFLOW FOR MOBILE)
    ========================================================================== */
 .reveal {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(20px) translateZ(0);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
 .reveal.revealed {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) translateZ(0);
 }
 
 .reveal-left {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(16px) translateZ(0);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
 }
 
 @media (min-width: 768px) {
   .reveal-left {
-    transform: translateX(-35px);
+    transform: translateX(-30px) translateZ(0);
   }
 }
 
 .reveal-left.revealed {
   opacity: 1;
-  transform: translate(0, 0);
+  transform: translate(0, 0) translateZ(0);
 }
 
 .reveal-right {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(16px) translateZ(0);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
 }
 
 @media (min-width: 768px) {
   .reveal-right {
-    transform: translateX(35px);
+    transform: translateX(30px) translateZ(0);
   }
 }
 
 .reveal-right.revealed {
   opacity: 1;
-  transform: translate(0, 0);
+  transform: translate(0, 0) translateZ(0);
 }
 
 .reveal-delay-1 { transition-delay: 0.1s; }
