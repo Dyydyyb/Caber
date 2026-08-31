@@ -44,24 +44,26 @@ html {
   scroll-behavior: smooth;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-  max-width: 100vw;
   width: 100%;
+  height: 100%;
 }
 
 body {
   background-color: var(--bg-dark);
-  min-height: 100vh;
-  overflow-x: hidden;
-  max-width: 100vw;
+  min-height: 100%;
   width: 100%;
   position: relative;
 }
 
-/* Prevent any section from spilling horizontally on mobile */
-section, header, footer, main {
-  max-width: 100vw;
+/* Enforce horizontal containment without breaking iOS vertical scroll */
+html, body {
   overflow-x: clip;
+  overflow-y: auto;
+}
+
+/* Safe container bounds without breaking iOS Safari vertical scroll */
+section, header, footer, main {
+  width: 100%;
 }
 
 /* Typography */
