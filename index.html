@@ -131,9 +131,9 @@
         ARTE EN TU PIEL CON IDENTIDAD Y PRECISIÓN
       </h1>
 
-      <!-- Subtitle / Main Description Profesional -->
+      <!-- Subtitle / Main Description Profesional y Sutil -->
       <p class="text-gray-300 text-xs sm:text-sm md:text-base max-w-2xl mx-auto leading-relaxed drop-shadow px-2">
-        Tatuajes de autor en estudios privados equipados bajo estrictas normas de bioseguridad. Especialista en <strong class="text-white">Black & Grey</strong>, <strong class="text-white">Dark Realism</strong>, <strong class="text-white">Lettering Custom</strong> y <strong class="text-white">Blackwork</strong>. Diseños exclusivos y asesoramiento personalizado.
+        Tatuajes de autor en estudios privados equipados bajo estrictas normas de bioseguridad. Trabajo enfocado en diversas técnicas como <strong class="text-white">Black & Grey</strong>, <strong class="text-white">Dark Realism</strong>, <strong class="text-white">Lettering Custom</strong> y <strong class="text-white">Blackwork</strong>. Diseños exclusivos y asesoramiento personalizado.
       </p>
 
       <!-- Action Buttons -->
@@ -670,18 +670,24 @@
         <!-- Step 2: Tattoo Style -->
         <div>
           <label class="block text-xs font-bold uppercase tracking-wider text-gray-300 mb-2.5">2. Estilo de tatuaje</label>
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5" id="stepStyle">
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5" id="stepStyle">
             <button type="button" class="choice-btn active" data-value="Black & Grey">
               <span class="font-bold text-xs">Black & Grey</span>
             </button>
-            <button type="button" class="choice-btn" data-value="Anime / Dark">
-              <span class="font-bold text-xs">Anime / Dark</span>
-            </button>
             <button type="button" class="choice-btn" data-value="Lettering">
-              <span class="font-bold text-xs">Lettering</span>
+              <span class="font-bold text-xs">Lettering Custom</span>
             </button>
-            <button type="button" class="choice-btn" data-value="Blackwork / Cyber">
+            <button type="button" class="choice-btn" data-value="Neotribal / Cybersigilismo">
+              <span class="font-bold text-xs">Neotribal / Cybersigilismo</span>
+            </button>
+            <button type="button" class="choice-btn" data-value="Blackwork">
               <span class="font-bold text-xs">Blackwork</span>
+            </button>
+            <button type="button" class="choice-btn" data-value="Dark Realism">
+              <span class="font-bold text-xs">Dark Realism</span>
+            </button>
+            <button type="button" class="choice-btn" data-value="No sé el estilo (Asesoramiento)">
+              <span class="font-bold text-xs text-amber-200">No sé el estilo</span>
             </button>
           </div>
         </div>
@@ -689,7 +695,7 @@
         <!-- Step 3: Body Placement -->
         <div>
           <label class="block text-xs font-bold uppercase tracking-wider text-gray-300 mb-2.5">3. Zona del cuerpo</label>
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5" id="stepPlacement">
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5" id="stepPlacement">
             <button type="button" class="choice-btn active" data-value="Brazo / Antebrazo / Muñeca">
               <span class="font-bold text-xs">Brazo / Mano</span>
             </button>
@@ -702,24 +708,34 @@
             <button type="button" class="choice-btn" data-value="Abdomen / Pecho / Espalda">
               <span class="font-bold text-xs">Abdomen / Pecho</span>
             </button>
+            <button type="button" class="choice-btn" data-value="Espalda completa / Costillas">
+              <span class="font-bold text-xs">Espalda / Otra</span>
+            </button>
+            <button type="button" class="choice-btn" data-value="Aún no lo elegí (Definir con Caber)">
+              <span class="font-bold text-xs text-amber-200">Aún no lo elegí</span>
+            </button>
           </div>
         </div>
 
         <!-- Step 4: Size -->
         <div>
           <label class="block text-xs font-bold uppercase tracking-wider text-gray-300 mb-2.5">4. Tamaño aproximado</label>
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5" id="stepSize">
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5" id="stepSize">
             <button type="button" class="choice-btn active" data-value="Hasta 12 cm">
               <span class="font-bold text-xs block">Hasta 12 cm</span>
               <span class="text-[10px] text-gray-400">Pieza individual</span>
             </button>
             <button type="button" class="choice-btn" data-value="15 a 25 cm">
               <span class="font-bold text-xs block">15 a 25 cm</span>
-              <span class="text-[10px] text-gray-400">Media manga / Gran detalle</span>
+              <span class="text-[10px] text-gray-400">Gran detalle</span>
             </button>
             <button type="button" class="choice-btn" data-value="Manga / Sesión completa">
               <span class="font-bold text-xs block">Manga / Espalda</span>
               <span class="text-[10px] text-gray-400">Sesión completa</span>
+            </button>
+            <button type="button" class="choice-btn" data-value="Aún no lo sé (A convenir)">
+              <span class="font-bold text-xs block text-amber-200">Aún no lo sé</span>
+              <span class="text-[10px] text-gray-400">A definir</span>
             </button>
           </div>
         </div>
