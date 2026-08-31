@@ -442,6 +442,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initCoverflowFromStore();
 
+  // Asynchronous background sync with Supabase Cloud for landing visitors
+  if (typeof TattooStore !== 'undefined') {
+    TattooStore.fetchAll().then(() => {
+      renderDynamicGallery();
+      initCoverflowFromStore();
+    });
+  }
+
   // -------------------------------------------------------------
   // 8. Scroll Reveal Observer
   // -------------------------------------------------------------

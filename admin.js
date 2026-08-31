@@ -50,11 +50,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // -------------------------------------------------------------
   // 1. Auth & Session Handling
   // -------------------------------------------------------------
-  const checkSession = () => {
+  const checkSession = async () => {
     const isAuth = sessionStorage.getItem(SESSION_AUTH_KEY) === 'true';
     if (isAuth) {
       loginScreen.classList.add('hidden');
       adminPanel.classList.remove('hidden');
+      loadAndRenderTattoos();
+      await TattooStore.fetchAll();
       loadAndRenderTattoos();
     } else {
       loginScreen.classList.remove('hidden');
@@ -168,9 +170,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Bind Delete Button
-    card.querySelector('.btn-delete').addEventListener('click', () => {
+    card.querySelector('.btn-delete').addEventListener('click', async () => {
       if (confirm(`¿Estás seguro de eliminar el tatuaje "${tattoo.title}"?`)) {
-        TattooStore.remove(tattoo.id);
+        await TattooStore.remove(tattoo.id);
         loadAndRenderTattoos();
       }
     });
@@ -329,9 +331,9 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // -------------------------------------------------------------
-  // 6. Form Submission (Save Tattoo)
+  // 6. Form Submission (Save Tattoo to Supabase)
   // -------------------------------------------------------------
-  tattooForm.addEventListener('submit', (e) => {
+  tattooForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     if (!activeImageSrc) {
@@ -358,20 +360,42 @@ document.addEventListener('DOMContentLoaded', () => {
       categoryLabel = customVal;
     }
 
-    const newTattoo = {
-      id: editTattooId.value || null,
-      title: title,
-      description: tattooDesc.value.trim(),
-      category: category,
-      categoryLabel: categoryLabel,
-      imageSrc: activeImageSrc,
-      showInSlider: checkSlider.checked,
-      showInGallery: checkGallery.checked
-    };
+    const submitBtn = tattooForm.querySelector('button[type="submit"]');
+    const originalBtnText = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Guardando en la nube...';
 
-    TattooStore.save(newTattoo);
-    closeModal();
-    loadAndRenderTattoos();
+    try {
+      // If user chose a file and bucket is available, try uploading to Supabase Storage
+      if (fileInput.files && fileInput.files[0]) {
+        const cloudUrl = await TattooStore.uploadImageFile(fileInput.files[0]);
+        if (cloudUrl) {
+          activeImageSrc = cloudUrl;
+        }
+      }
+
+      const newTattoo = {
+        id: editTattooId.value || null,
+        title: title,
+        description: tattooDesc.value.trim(),
+        category: category,
+        categoryLabel: categoryLabel,
+        imageSrc: activeImageSrc,
+        showInSlider: checkSlider.checked,
+        showInGallery: checkGallery.checked
+      };
+
+      await TattooStore.save(newTattoo);
+      closeModal();
+      await TattooStore.fetchAll();
+      loadAndRenderTattoos();
+    } catch (err) {
+      console.error('Error al guardar:', err);
+      alert('Hubo un error al guardar el tatuaje. Por favor intentá nuevamente.');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalBtnText;
+    }
   });
 
   // -------------------------------------------------------------
