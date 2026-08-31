@@ -1,0 +1,211 @@
+/**
+ * CABER TATTOO - Interactive Functionality
+ * Official WhatsApp: +54 9 11 2723-3546 (5491127233546)
+ */
+
+document.addEventListener('DOMContentLoaded', () => {
+  const WHATSAPP_PHONE = '5491127233546';
+
+  // -------------------------------------------------------------
+  // 1. Header Scrolled State
+  // -------------------------------------------------------------
+  const header = document.getElementById('mainHeader');
+  const updateHeaderScroll = () => {
+    if (window.scrollY > 40) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  };
+  window.addEventListener('scroll', updateHeaderScroll, { passive: true });
+  updateHeaderScroll();
+
+  // -------------------------------------------------------------
+  // 2. Mobile Menu Toggle
+  // -------------------------------------------------------------
+  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const mobileLinks = document.querySelectorAll('.mobile-link');
+
+  if (mobileMenuBtn && mobileMenu) {
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+  }
+
+  // -------------------------------------------------------------
+  // 3. Portfolio Filters
+  // -------------------------------------------------------------
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const galleryItems = document.querySelectorAll('.gallery-item');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filterValue = btn.getAttribute('data-filter');
+
+      galleryItems.forEach(item => {
+        const itemCategory = item.getAttribute('data-category');
+        if (filterValue === 'all' || itemCategory === filterValue) {
+          item.style.display = 'block';
+          item.style.opacity = '0';
+          item.style.transform = 'scale(0.95)';
+          setTimeout(() => {
+            item.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+            item.style.opacity = '1';
+            item.style.transform = 'scale(1)';
+          }, 30);
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // -------------------------------------------------------------
+  // 4. Lightbox Modal
+  // -------------------------------------------------------------
+  const lightbox = document.getElementById('imageLightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxTag = document.getElementById('lightboxTag');
+  const lightboxTitle = document.getElementById('lightboxTitle');
+  const lightboxDesc = document.getElementById('lightboxDesc');
+  const lightboxQuoteBtn = document.getElementById('lightboxQuoteBtn');
+  const closeLightbox = document.getElementById('closeLightbox');
+
+  const openModal = (src, title, desc, tag) => {
+    lightboxImg.src = src;
+    lightboxImg.alt = title;
+    lightboxTitle.textContent = title;
+    lightboxDesc.textContent = desc;
+    lightboxTag.textContent = tag;
+
+    const encodedMsg = encodeURIComponent(`Hola Caber! Estuve viendo en tu web el tatuaje "${title}" (${tag}) y me gustaría cotizar algo de ese estilo.`);
+    lightboxQuoteBtn.href = `https://wa.me/${WHATSAPP_PHONE}?text=${encodedMsg}`;
+
+    lightbox.classList.remove('pointer-events-none');
+    lightbox.style.opacity = '1';
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeModal = () => {
+    lightbox.style.opacity = '0';
+    lightbox.classList.add('pointer-events-none');
+    document.body.style.overflow = '';
+  };
+
+  galleryItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const src = item.getAttribute('data-src');
+      const title = item.getAttribute('data-title');
+      const desc = item.getAttribute('data-desc');
+      const tag = item.getAttribute('data-tag');
+      openModal(src, title, desc, tag);
+    });
+  });
+
+  if (closeLightbox) {
+    closeLightbox.addEventListener('click', closeModal);
+  }
+
+  if (lightbox) {
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeModal();
+    });
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  // -------------------------------------------------------------
+  // 5. Interactive Quotation & Booking Calculator
+  // -------------------------------------------------------------
+  const choices = {
+    studio: 'Avellaneda',
+    style: 'Black & Grey / Sombras',
+    placement: 'Brazo / Antebrazo',
+    size: 'Pequeño / Mediano (hasta 12 cm)'
+  };
+
+  const setupStepChoices = (containerId, key) => {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    const buttons = container.querySelectorAll('.choice-btn');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        buttons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        choices[key] = btn.getAttribute('data-value');
+        updateQuoteSummary();
+      });
+    });
+  };
+
+  setupStepChoices('stepStudio', 'studio');
+  setupStepChoices('stepStyle', 'style');
+  setupStepChoices('stepPlacement', 'placement');
+  setupStepChoices('stepSize', 'size');
+
+  const liveSummaryText = document.getElementById('liveSummaryText');
+  const btnSendQuote = document.getElementById('btnSendQuote');
+
+  const updateQuoteSummary = () => {
+    const textPreview = `"Hola Caber! Quiero consultar por un tattoo:\n• Estudio: ${choices.studio}\n• Estilo: ${choices.style}\n• Zona: ${choices.placement}\n• Tamaño: ${choices.size}."`;
+    
+    if (liveSummaryText) {
+      liveSummaryText.textContent = textPreview;
+    }
+
+    const whatsappMessage = `Hola Caber! Quiero consultar para hacerme un tatuaje:\n\n📍 Estudio preferido: ${choices.studio}\n🎨 Estilo: ${choices.style}\n💪 Zona del cuerpo: ${choices.placement}\n📏 Tamaño aproximado: ${choices.size}\n\n¿Tenés fechas disponibles para coordinar?`;
+    
+    if (btnSendQuote) {
+      btnSendQuote.href = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(whatsappMessage)}`;
+    }
+  };
+
+  // Initial calculation trigger
+  updateQuoteSummary();
+
+  // -------------------------------------------------------------
+  // 6. FAQ Accordions
+  // -------------------------------------------------------------
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(item => {
+    const trigger = item.querySelector('.faq-trigger');
+    const content = item.querySelector('.faq-content');
+    const icon = item.querySelector('.faq-icon');
+
+    if (trigger && content) {
+      trigger.addEventListener('click', () => {
+        const isHidden = content.classList.contains('hidden');
+
+        // Close all other accordions
+        faqItems.forEach(other => {
+          const otherContent = other.querySelector('.faq-content');
+          const otherIcon = other.querySelector('.faq-icon');
+          if (otherContent) otherContent.classList.add('hidden');
+          if (otherIcon) otherIcon.innerHTML = '&plus;';
+        });
+
+        if (isHidden) {
+          content.classList.remove('hidden');
+          if (icon) icon.innerHTML = '&minus;';
+        } else {
+          content.classList.add('hidden');
+          if (icon) icon.innerHTML = '&plus;';
+        }
+      });
+    }
+  });
+
+});

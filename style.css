@@ -1,0 +1,322 @@
+/* ==========================================================================
+   CABER TATTOO - MINIMALIST DARK TATTOO STUDIO
+   Clean, matte, authentic monochrome with subtle deep crimson accents.
+   No neon, no oversaturated glows.
+   ========================================================================== */
+
+:root {
+  --bg-dark: #09090b;
+  --bg-surface: #121215;
+  --bg-surface-card: #18181c;
+  --bg-elevated: #202025;
+  
+  --color-crimson: #a81c24;
+  --color-crimson-hover: #c4232c;
+  --color-crimson-subtle: rgba(168, 28, 36, 0.15);
+  
+  --text-white: #ffffff;
+  --text-light: #e4e4e7;
+  --text-muted: #a1a1aa;
+  --text-dim: #71717a;
+
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.16);
+  --border-crimson: rgba(168, 28, 36, 0.4);
+  
+  --font-serif: 'Cinzel', serif;
+  --font-display: 'Syne', sans-serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --transition-smooth: all 0.25s ease;
+}
+
+/* Reset & Base */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--font-sans);
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-color: var(--bg-dark);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Typography */
+.font-serif { font-family: var(--font-serif); }
+.font-display { font-family: var(--font-display); }
+
+/* Header */
+#mainHeader {
+  background: rgba(9, 9, 11, 0.75);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-color);
+}
+
+#mainHeader.scrolled {
+  background: rgba(9, 9, 11, 0.95);
+  border-bottom: 1px solid var(--border-strong);
+}
+
+.nav-link {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: var(--transition-smooth);
+}
+
+.nav-link:hover {
+  color: var(--text-white);
+}
+
+/* Buttons - Solid, Matte, Professional */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-crimson);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.btn-primary:hover {
+  background: var(--color-crimson-hover);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-light);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--border-strong);
+  color: var(--text-white);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: var(--text-light);
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.btn-outline:hover {
+  border-color: var(--text-white);
+  color: var(--text-white);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Subtle Badges */
+.section-tag {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.tag-badge {
+  display: inline-block;
+  padding: 3px 9px;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid var(--border-color);
+  color: var(--text-white);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Stat Box */
+.stat-box {
+  padding: 16px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  text-align: center;
+}
+
+/* Studio Cards */
+.studio-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  transition: var(--transition-smooth);
+}
+
+.studio-card:hover {
+  border-color: var(--border-strong);
+}
+
+/* Map Dark Theme Filter */
+.map-dark {
+  filter: grayscale(100%) invert(92%) contrast(85%);
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+}
+
+/* Portfolio Filters */
+.filter-btn {
+  padding: 6px 14px;
+  border-radius: 6px;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: var(--transition-smooth);
+}
+
+.filter-btn:hover {
+  color: var(--text-white);
+  border-color: var(--border-strong);
+}
+
+.filter-btn.active {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--text-white);
+  color: var(--text-white);
+}
+
+/* Gallery Item */
+.gallery-item {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  background: var(--bg-surface);
+  transition: var(--transition-smooth);
+}
+
+.gallery-item:hover {
+  border-color: var(--border-strong);
+}
+
+.gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.4) 50%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 20px;
+  opacity: 0.9;
+  transition: var(--transition-smooth);
+}
+
+.gallery-item:hover .gallery-overlay {
+  opacity: 1;
+}
+
+/* Calculator Choice Buttons */
+.choice-btn {
+  display: block;
+  width: 100%;
+  padding: 12px 14px;
+  text-align: left;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-color);
+  color: var(--text-light);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.choice-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--border-strong);
+}
+
+.choice-btn.active {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--text-white);
+  color: var(--text-white);
+}
+
+/* FAQ Item */
+.faq-item {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  transition: var(--transition-smooth);
+}
+
+.faq-item:hover {
+  border-color: var(--border-strong);
+}
+
+.faq-trigger {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+/* Utility Colors */
+.bg-dark { background-color: var(--bg-dark); }
+.bg-surface { background-color: var(--bg-surface); }
+.border-border { border-color: var(--border-color); }
+.text-crimson { color: var(--color-crimson); }
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46;
+}

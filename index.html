@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Caber Tattoo | Tatuajes en Avellaneda & Villa Elisa</title>
+  <meta name="description" content="Estudio de tatuajes de Caber Tattoo. Especialista en Black & Grey, Anime Dark, Lettering y Realismo. Estudios en Avellaneda y Villa Elisa. Agendá tu turno.">
+  <meta name="keywords" content="tatuajes avellaneda, tatuador villa elisa, caber tattoo, black and grey, anime tattoo, lettering buenos aires, turnos tatuajes">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="assets/images/caber-tattoo-logo.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            crimson: '#a81c24',
+            dark: '#09090b',
+            surface: '#121215'
+          },
+          fontFamily: {
+            serif: ['Cinzel', 'serif'],
+            display: ['Syne', 'sans-serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-dark text-light antialiased">
+
+  <!-- HEADER / NAVBAR -->
+  <header class="fixed top-0 left-0 w-full z-50 transition-all duration-200" id="mainHeader">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Brand with Caber's photo as exclusive round logo in header -->
+        <a href="#hero" class="group flex items-center gap-3 text-decoration-none">
+          <img src="assets/images/caber-artist.png" 
+               alt="Caber Tattoo" 
+               class="w-11 h-11 rounded-full object-cover border border-white/25 group-hover:border-white transition-colors duration-200">
+          <div>
+            <span class="font-serif font-bold tracking-wider text-base sm:text-lg text-white block uppercase leading-tight">CABER TATTOO</span>
+            <span class="text-[10px] tracking-[0.2em] text-gray-400 uppercase block">Avellaneda &bull; Villa Elisa</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+          <a href="#estudios" class="nav-link">Estudios</a>
+          <a href="#portfolio" class="nav-link">Trabajos</a>
+          <a href="#sobre-mi" class="nav-link">El Tatuador</a>
+          <a href="#cotizador" class="nav-link">Cotizar Turno</a>
+          <a href="#faq" class="nav-link">Preguntas</a>
+        </nav>
+
+        <!-- CTA Header Action -->
+        <div class="flex items-center gap-3">
+          <a href="https://wa.me/5491127233546?text=Hola%20Caber!%20Quiero%20consultar%20para%20hacerme%20un%20tatuaje" 
+             target="_blank" 
+             rel="noopener noreferrer" 
+             class="btn-primary text-xs font-bold uppercase tracking-wider py-2.5 px-5 flex items-center gap-2">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+            </svg>
+            <span class="hidden sm:inline">Agendar</span> Turno
+          </a>
+
+          <!-- Mobile Hamburger Toggle -->
+          <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg bg-surface border border-border text-gray-300 hover:text-white" aria-label="Abrir Menú">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+            </svg>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Mobile Nav Dropdown -->
+    <div id="mobileMenu" class="md:hidden hidden bg-surface border-b border-border px-6 py-6 space-y-4">
+      <a href="#estudios" class="block text-sm font-semibold text-gray-300 hover:text-white mobile-link">Estudios (Avellaneda & Villa Elisa)</a>
+      <a href="#portfolio" class="block text-sm font-semibold text-gray-300 hover:text-white mobile-link">Galería de Tatuajes</a>
+      <a href="#sobre-mi" class="block text-sm font-semibold text-gray-300 hover:text-white mobile-link">El Tatuador</a>
+      <a href="#cotizador" class="block text-sm font-semibold text-gray-300 hover:text-white mobile-link">Cotizador Interactivo</a>
+      <a href="#faq" class="block text-sm font-semibold text-gray-300 hover:text-white mobile-link">Preguntas Frecuentes</a>
+      <div class="pt-4 border-t border-border">
+        <a href="tel:+5491127233546" class="flex items-center gap-2 text-xs text-gray-400 hover:text-white">
+          <span>📞</span> +54 9 11 2723-3546
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section id="hero" class="relative pt-28 pb-20 md:pt-36 md:pb-28 overflow-hidden">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      
+      <!-- Studio Location Indicator Badge -->
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-surface border border-border text-xs font-semibold mb-6">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+        <span class="text-gray-300 font-medium">Agenda abierta</span>
+        <span class="text-gray-600">&bull;</span>
+        <span class="text-gray-300 uppercase tracking-wider text-[11px]">Estudios en Avellaneda & Villa Elisa</span>
+      </div>
+
+      <!-- MAIN INFORMATION FIRST (POR ENCIMA DE LA IMAGEN CABERTATTOO) -->
+      <h1 class="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight uppercase text-white max-w-4xl mx-auto leading-tight mb-6">
+        ARTE EN TU PIEL CON IDENTIDAD Y PRECISIÓN
+      </h1>
+
+      <!-- Subtitle / Main Description -->
+      <p class="text-gray-400 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed mb-8">
+        Tatuajes de autor en dos estudios privados y equipados. Especializado en <strong class="text-white">Black & Grey</strong>, <strong class="text-white">Dark Realism</strong>, <strong class="text-white">Anime Tattoo</strong>, <strong class="text-white">Lettering Custom</strong> y <strong class="text-white">Blackwork</strong>. Materiales 100% descartables y atención personalizada.
+      </p>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
+        <a href="#cotizador" class="btn-primary w-full sm:w-auto py-3.5 px-8 text-xs sm:text-sm uppercase tracking-wider">
+          Cotizar y Agendar Turno
+        </a>
+        <a href="#portfolio" class="btn-secondary w-full sm:w-auto py-3.5 px-7 text-xs sm:text-sm uppercase tracking-wider">
+          Ver Trabajos Realizados
+        </a>
+      </div>
+
+      <!-- MAIN BRAND IMAGE EMBLEM (ABARCANDO EL SECTOR JUSTO DEBAJO DE LA INFO PRINCIPAL) -->
+      <div class="max-w-2xl mx-auto mb-14 flex justify-center">
+        <img src="assets/images/caber-tattoo-logo.png" 
+             alt="Caber Tattoo Tatuajes" 
+             class="w-full max-w-xs sm:max-w-sm object-contain filter contrast-125">
+      </div>
+
+      <!-- Preview Row with 4 Featured Pieces -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
+        <div class="aspect-[3/4] rounded-xl overflow-hidden border border-border bg-surface">
+          <img src="assets/images/tattoo-filigrana.png" alt="Tatuaje Filigrana" class="w-full h-full object-cover">
+        </div>
+        <div class="aspect-[3/4] rounded-xl overflow-hidden border border-border bg-surface">
+          <img src="assets/images/tattoo-cuello-script.png" alt="Tatuaje Cuello Script" class="w-full h-full object-cover">
+        </div>
+        <div class="aspect-[3/4] rounded-xl overflow-hidden border border-border bg-surface">
+          <img src="assets/images/tattoo-daga-biomecanica.png" alt="Tatuaje Daga Biomecánica" class="w-full h-full object-cover">
+        </div>
+        <div class="aspect-[3/4] rounded-xl overflow-hidden border border-border bg-surface">
+          <img src="assets/images/tattoo-unforgettable.jpg" alt="Tatuaje Unforgettable" class="w-full h-full object-cover">
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- DUAL STUDIOS WITH GOOGLE MAPS SECTION -->
+  <section id="estudios" class="py-20 bg-surface border-y border-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <span class="section-tag">Ubicaciones</span>
+        <h2 class="font-serif text-2xl sm:text-4xl font-bold uppercase text-white mt-2">
+          DOS ESTUDIOS PRIVADOS
+        </h2>
+        <p class="text-gray-400 text-sm mt-3">
+          Elegí la sede que te quede más cercana. Ambos estudios son privados, climatizados y con turnos previamente coordinados.
+        </p>
+      </div>
+
+      <!-- Studio Cards Grid with Google Maps Embeds -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        
+        <!-- ESTUDIO 1: AVELLANEDA -->
+        <div class="studio-card p-6 sm:p-8 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-4">
+              <span class="text-xs font-bold uppercase tracking-wider text-gray-300">Sede 01</span>
+              <span class="px-2.5 py-0.5 rounded text-[11px] font-semibold bg-white/5 border border-border text-gray-300">Zona Sur GBA</span>
+            </div>
+
+            <h3 class="font-serif text-2xl font-bold text-white uppercase mb-1">Estudio Avellaneda</h3>
+            <p class="text-xs text-gray-400 flex items-center gap-1.5 mb-4">
+              <span>📍</span>
+              <span>Av. Cabildo 1777, Piñeyro, Avellaneda, Buenos Aires</span>
+            </p>
+
+            <!-- Google Maps Embed: Avellaneda -->
+            <div class="mb-5 rounded-xl overflow-hidden border border-border bg-black">
+              <iframe 
+                src="https://maps.google.com/maps?q=-34.6711687,-58.3914427&hl=es&z=15&output=embed" 
+                width="100%" 
+                height="210" 
+                style="border:0;" 
+                class="map-dark w-full"
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Mapa Estudio Avellaneda">
+              </iframe>
+            </div>
+
+            <ul class="space-y-2 text-xs text-gray-300 mb-6">
+              <li class="flex items-center gap-2">
+                <span class="text-white font-bold">&bull;</span>
+                <span>Fácil acceso desde Capital Federal y Zona Sur (Puente Pueyrredón / Autopista)</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-white font-bold">&bull;</span>
+                <span>Ambiente privado con climatización y música a elección</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-white font-bold">&bull;</span>
+                <span>Atención puntual con turno pactado</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="pt-4 border-t border-border flex items-center justify-between flex-wrap gap-3">
+            <a href="https://maps.app.goo.gl/wjUo6KvDXiSpT65B6" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="btn-outline text-xs font-semibold py-2.5 px-4 flex items-center gap-1.5">
+              <span>Ver en Google Maps</span>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+
+            <a href="https://wa.me/5491127233546?text=Hola%20Caber!%20Me%20interesa%20agendar%20un%20turno%20en%20el%20estudio%20de%20AVELLANEDA" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="btn-primary text-xs font-bold uppercase tracking-wider py-2.5 px-5">
+              Turno en Avellaneda
+            </a>
+          </div>
+        </div>
+
+        <!-- ESTUDIO 2: VILLA ELISA -->
+        <div class="studio-card p-6 sm:p-8 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-4">
+              <span class="text-xs font-bold uppercase tracking-wider text-gray-300">Sede 02</span>
+              <span class="px-2.5 py-0.5 rounded text-[11px] font-semibold bg-white/5 border border-border text-gray-300">La Plata / Zona Sur</span>
+            </div>
+
+            <h3 class="font-serif text-2xl font-bold text-white uppercase mb-1">Estudio Villa Elisa</h3>
+            <p class="text-xs text-gray-400 flex items-center gap-1.5 mb-4">
+              <span>📍</span>
+              <span>Calle 412 & Calle 115, Villa Elisa, Buenos Aires</span>
+            </p>
+
+            <!-- Google Maps Embed: Villa Elisa -->
+            <div class="mb-5 rounded-xl overflow-hidden border border-border bg-black">
+              <iframe 
+                src="https://maps.google.com/maps?q=-34.8462816,-58.0808654&hl=es&z=15&output=embed" 
+                width="100%" 
+                height="210" 
+                style="border:0;" 
+                class="map-dark w-full"
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Mapa Estudio Villa Elisa">
+              </iframe>
+            </div>
+
+            <ul class="space-y-2 text-xs text-gray-300 mb-6">
+              <li class="flex items-center gap-2">
+                <span class="text-white font-bold">&bull;</span>
+                <span>Zona residencial tranquila con fácil estacionamiento en la puerta</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-white font-bold">&bull;</span>
+                <span>Ideal para sesiones completas de 4 a 8 horas sin apuros ni ruidos</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-white font-bold">&bull;</span>
+                <span>Armado y ajuste final del diseño directo en la sesión</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="pt-4 border-t border-border flex items-center justify-between flex-wrap gap-3">
+            <a href="https://maps.app.goo.gl/xoLYxnzUV1M9Mwmt5" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="btn-outline text-xs font-semibold py-2.5 px-4 flex items-center gap-1.5">
+              <span>Ver en Google Maps</span>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+
+            <a href="https://wa.me/5491127233546?text=Hola%20Caber!%20Me%20interesa%20agendar%20un%20turno%20en%20el%20estudio%20de%20VILLA%20ELISA" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="btn-primary text-xs font-bold uppercase tracking-wider py-2.5 px-5">
+              Turno en Villa Elisa
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PORTFOLIO / GALLERY SECTION (ALL 8 TATTOOS) -->
+  <section id="portfolio" class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Header with Filters -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
+        <div>
+          <span class="section-tag">Portfolio</span>
+          <h2 class="font-serif text-2xl sm:text-4xl font-bold uppercase text-white mt-2">
+            GALERÍA DE TRABAJOS
+          </h2>
+          <p class="text-gray-400 text-xs sm:text-sm mt-1">
+            Hacé clic en cualquier foto para verla en pantalla completa con detalles técnicos.
+          </p>
+        </div>
+
+        <!-- Filter Tags -->
+        <div class="flex items-center gap-2 overflow-x-auto pb-2" id="portfolioFilters">
+          <button class="filter-btn active" data-filter="all">Todos</button>
+          <button class="filter-btn" data-filter="black-grey">Black & Grey</button>
+          <button class="filter-btn" data-filter="anime">Anime & Dark</button>
+          <button class="filter-btn" data-filter="lettering">Lettering</button>
+          <button class="filter-btn" data-filter="blackwork">Blackwork & Cuello</button>
+        </div>
+      </div>
+
+      <!-- Gallery Grid with the 8 high-res photos -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="galleryGrid">
+        
+        <!-- Item 1: Filigrana Manga -->
+        <div class="gallery-item group relative aspect-[3/4] cursor-pointer" 
+             data-category="black-grey"
+             data-src="assets/images/tattoo-filigrana.png"
+             data-title="Manga Filigrana Ornamental"
+             data-desc="Trabajo anatómico de filigrana en antebrazo y codo con sombreado de transición suave estilo Black & Grey puro."
+             data-tag="Black & Grey">
+          <img src="assets/images/tattoo-filigrana.png" alt="Tatuaje Filigrana Ornamental" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <div class="gallery-overlay">
+            <span class="tag-badge">Black & Grey</span>
+            <h3 class="font-serif text-base font-bold text-white mt-1">Manga Filigrana</h3>
+            <p class="text-xs text-gray-300 line-clamp-1 mt-0.5">Sombreado en capas y volumen</p>
+          </div>
+        </div>
+
+        <!-- Item 2: Anime Dark Hand -->
+        <div class="gallery-item group relative aspect-[3/4] cursor-pointer" 
+             data-category="anime"
+             data-src="assets/images/tattoo-anime-dark.png"
+             data-title="Mano Demoníaca & Ojos Anime"
+             data-desc="Composición oscura inspirada en universos anime dark. Desgarro de piel con saturación de tinta roja y pentagrama de detalle fino."
+             data-tag="Anime & Dark">
+          <img src="assets/images/tattoo-anime-dark.png" alt="Tatuaje Anime Dark Mano" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <div class="gallery-overlay">
+            <span class="tag-badge">Anime & Dark</span>
+            <h3 class="font-serif text-base font-bold text-white mt-1">Mano Maldita & Ojos</h3>
+            <p class="text-xs text-gray-300 line-clamp-1 mt-0.5">Tinta roja y contraste negro</p>
+          </div>
+        </div>
+
+        <!-- Item 3: Lettering Wasted -->
+        <div class="gallery-item group relative aspect-[3/4] cursor-pointer" 
+             data-category="lettering"
+             data-src="assets/images/tattoo-lettering.png"
+             data-title="Lettering Custom 'Wasted'"
+             data-desc="Caligrafía gótica/chicana personalizada sobre pantorrilla con línea dinámica y una franja roja continua."
+             data-tag="Lettering">
+          <img src="assets/images/tattoo-lettering.png" alt="Tatuaje Lettering en pierna" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <div class="gallery-overlay">
+            <span class="tag-badge">Lettering</span>
+            <h3 class="font-serif text-base font-bold text-white mt-1">Gothic Script 'Wasted'</h3>
+            <p class="text-xs text-gray-300 line-clamp-1 mt-0.5">Caligrafía fluida + Splash rojo</p>
+          </div>
+        </div>
+
+        <!-- Item 4: Mascaras Cuello -->
+        <div class="gallery-item group relative aspect-[3/4] cursor-pointer" 
+             data-category="blackwork"
+             data-src="assets/images/tattoo-mascaras.png"
+             data-title="Máscaras Teatro: Sonríe y Llora"
+             data-desc="Clásico 'Smile Now, Cry Later' adaptado en el lateral del cuello y trapecio con volumen pétreo y contrastes profundos."
+             data-tag="Cuello & Sombras">
+          <img src="assets/images/tattoo-mascaras.png" alt="Tatuaje Máscaras en cuello" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <div class="gallery-overlay">
+            <span class="tag-badge">Cuello & Sombras</span>
+            <h3 class="font-serif text-base font-bold text-white mt-1">Máscaras de Teatro</h3>
+            <p class="text-xs text-gray-300 line-clamp-1 mt-0.5">Textura agrietada y sombras</p>
+          </div>
+        </div>
+
+        <!-- Item 5: Cuello Caligrafía & Líneas Rojas (NUEVO) -->
+        <div class="gallery-item group relative aspect-[3/4] cursor-pointer" 
+             data-category="lettering"
+             data-src="assets/images/tattoo-cuello-script.png"
+             data-title="Script Anatómico en Cuello y Clavícula"
+             data-desc="Caligrafía de flujo vertical sobre cuello, clavícula y trapecio con guías y trazos dinámicos en rojo y negro."
+             data-tag="Lettering / Cuello">
+          <img src="assets/images/tattoo-cuello-script.png" alt="Tatuaje Caligrafía Cuello" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <div class="gallery-overlay">
+            <span class="tag-badge">Lettering / Cuello</span>
+            <h3 class="font-serif text-base font-bold text-white mt-1">Caligrafía en Cuello</h3>
+            <p class="text-xs text-gray-300 line-clamp-1 mt-0.5">Línea libre y flujo anatómico</p>
+          </div>
+        </div>
+
+        <!-- Item 6: Blackwork Cyber en Muñeca & Mano (NUEVO) -->
+        <div class="gallery-item group relative aspect-[3/4] cursor-pointer" 
+             data-category="blackwork"
+             data-src="assets/images/tattoo-muneca-blackwork.png"
+             data-title="Cyber Tribal / Blackwork en Muñeca"
+             data-desc="Diseño blackwork agresivo envolvente en muñeca y dorso de la mano con negro sólido intenso y detalles de salpicadura."
+             data-tag="Blackwork">
+          <img src="assets/images/tattoo-muneca-blackwork.png" alt="Tatuaje Blackwork Muñeca" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <div class="gallery-overlay">
+            <span class="tag-badge">Blackwork</span>
+            <h3 class="font-serif text-base font-bold text-white mt-1">Cyber Blackwork Muñeca</h3>
+            <p class="text-xs text-gray-300 line-clamp-1 mt-0.5">Negro sólido envolvente</p>
+          </div>
+        </div>
+
+        <!-- Item 7: Daga Biomecánica & Ojo (NUEVO) -->
+        <div class="gallery-item group relative aspect-[3/4] cursor-pointer" 
+             data-category="black-grey"
+             data-src="assets/images/tattoo-daga-biomecanica.png"
+             data-title="Daga Biomecánica & Ojo Realista"
+             data-desc="Pieza en pierna de estructura biomecánica orgánica con hueso, púas afiladas y un ojo central hiperrealista con textura profunda."
+             data-tag="Black & Grey / Dark">
+          <img src="assets/images/tattoo-daga-biomecanica.png" alt="Tatuaje Daga Biomecánica" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <div class="gallery-overlay">
+            <span class="tag-badge">Black & Grey / Dark</span>
+            <h3 class="font-serif text-base font-bold text-white mt-1">Daga Biomecánica</h3>
+            <p class="text-xs text-gray-300 line-clamp-1 mt-0.5">Ojo realista y textura orgánica</p>
+          </div>
+        </div>
+
+        <!-- Item 8: Script 'Unforgettable' en Abdomen (NUEVO) -->
+        <div class="gallery-item group relative aspect-[3/4] cursor-pointer" 
+             data-category="lettering"
+             data-src="assets/images/tattoo-unforgettable.jpg"
+             data-title="Lettering Cursivo 'Unforgettable'"
+             data-desc="Caligrafía elegante con curvas pronunciadas y remates curvos en bajo vientre / abdomen adaptado a la curvatura natural."
+             data-tag="Lettering">
+          <img src="assets/images/tattoo-unforgettable.jpg" alt="Tatuaje Lettering Unforgettable" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <div class="gallery-overlay">
+            <span class="tag-badge">Lettering</span>
+            <h3 class="font-serif text-base font-bold text-white mt-1">Script 'Unforgettable'</h3>
+            <p class="text-xs text-gray-300 line-clamp-1 mt-0.5">Curvas limpias en abdomen</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- LIGHTBOX MODAL -->
+  <div id="imageLightbox" class="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-200">
+    <button id="closeLightbox" class="absolute top-6 right-6 w-10 h-10 rounded-full bg-surface border border-border text-white flex items-center justify-center hover:bg-white/10 transition-colors text-xl" aria-label="Cerrar modal">
+      &times;
+    </button>
+    <div class="max-w-3xl w-full flex flex-col md:flex-row items-center gap-6 bg-surface p-5 sm:p-6 rounded-2xl border border-border">
+      <div class="w-full md:w-1/2 max-h-[65vh] flex items-center justify-center overflow-hidden rounded-xl bg-black">
+        <img id="lightboxImg" src="" alt="" class="max-w-full max-h-[60vh] object-contain">
+      </div>
+      <div class="w-full md:w-1/2 text-left space-y-3">
+        <span id="lightboxTag" class="tag-badge"></span>
+        <h3 id="lightboxTitle" class="font-serif text-2xl font-bold text-white"></h3>
+        <p id="lightboxDesc" class="text-gray-400 text-xs sm:text-sm leading-relaxed"></p>
+        <div class="pt-3 border-t border-border">
+          <a id="lightboxQuoteBtn" href="" target="_blank" class="btn-primary inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider py-2.5 px-5">
+            Consultar Tatuaje Similar
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT CABER / BIO SECTION -->
+  <section id="sobre-mi" class="py-20 bg-surface border-t border-border">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+      
+      <span class="section-tag">El Tatuador</span>
+      <h2 class="font-serif text-2xl sm:text-4xl font-bold uppercase text-white">
+        COMPROMISO, TÉCNICA Y RESPETO POR LA PIEL
+      </h2>
+      
+      <p class="text-gray-300 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
+        Detrás de <strong class="text-white">Caber Tattoo</strong> hay años de formación continua, enfoque en el detalle y respeto por la anatomía de cada persona. Cada pieza es diseñada exclusivamente pensando en cómo va a envejecer y cómo fluye con las líneas naturales del cuerpo.
+      </p>
+
+      <!-- Key Commitments Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 text-left">
+        <div class="p-5 rounded-xl bg-dark border border-border">
+          <span class="text-xs font-bold text-gray-400 block mb-1 uppercase tracking-wider">01. Asesoramiento</span>
+          <p class="text-xs text-gray-400 leading-relaxed">Definimos juntos el tamaño exacto, la colocación anatómica y el balance de sombras para que la pieza destaque.</p>
+        </div>
+        <div class="p-5 rounded-xl bg-dark border border-border">
+          <span class="text-xs font-bold text-gray-400 block mb-1 uppercase tracking-wider">02. Bioseguridad</span>
+          <p class="text-xs text-gray-400 leading-relaxed">Agujas y cartuchos descartables sellados que se abren en tu presencia. Tintas homologadas y campo estéril.</p>
+        </div>
+        <div class="p-5 rounded-xl bg-dark border border-border">
+          <span class="text-xs font-bold text-gray-400 block mb-1 uppercase tracking-wider">03. Curación</span>
+          <p class="text-xs text-gray-400 leading-relaxed">Te entrego las pautas completas de cicatrización y quedo a disposición por WhatsApp ante cualquier duda.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- INTERACTIVE QUOTATION & BOOKING CALCULATOR -->
+  <section id="cotizador" class="py-20">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-xl mx-auto mb-10">
+        <span class="section-tag">Agendá tu Turno</span>
+        <h2 class="font-serif text-2xl sm:text-4xl font-bold uppercase text-white mt-2">
+          COTIZÁ TU IDEA
+        </h2>
+        <p class="text-gray-400 text-xs sm:text-sm mt-2">
+          Seleccioná tus preferencias para generar tu consulta directa de WhatsApp al instante.
+        </p>
+      </div>
+
+      <!-- Interactive Form Box -->
+      <div class="bg-surface p-6 sm:p-8 rounded-2xl border border-border space-y-6">
+        
+        <!-- Step 1: Studio -->
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider text-gray-300 mb-2.5">1. ¿En qué estudio preferís tatuarte?</label>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5" id="stepStudio">
+            <button type="button" class="choice-btn active" data-value="Avellaneda">
+              <span class="text-sm font-bold block">Avellaneda</span>
+              <span class="text-[10px] text-gray-400">Av. Cabildo 1777 (Zona Sur)</span>
+            </button>
+            <button type="button" class="choice-btn" data-value="Villa Elisa">
+              <span class="text-sm font-bold block">Villa Elisa</span>
+              <span class="text-[10px] text-gray-400">Calle 412 & 115 (La Plata)</span>
+            </button>
+            <button type="button" class="choice-btn" data-value="Cualquiera de los dos">
+              <span class="text-sm font-bold block">Me da igual</span>
+              <span class="text-[10px] text-gray-400">Primer fecha disponible</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 2: Tattoo Style -->
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider text-gray-300 mb-2.5">2. Estilo de tatuaje</label>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5" id="stepStyle">
+            <button type="button" class="choice-btn active" data-value="Black & Grey">
+              <span class="font-bold text-xs">Black & Grey</span>
+            </button>
+            <button type="button" class="choice-btn" data-value="Anime / Dark">
+              <span class="font-bold text-xs">Anime / Dark</span>
+            </button>
+            <button type="button" class="choice-btn" data-value="Lettering">
+              <span class="font-bold text-xs">Lettering</span>
+            </button>
+            <button type="button" class="choice-btn" data-value="Blackwork / Cyber">
+              <span class="font-bold text-xs">Blackwork</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 3: Body Placement -->
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider text-gray-300 mb-2.5">3. Zona del cuerpo</label>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5" id="stepPlacement">
+            <button type="button" class="choice-btn active" data-value="Brazo / Antebrazo / Muñeca">
+              <span class="font-bold text-xs">Brazo / Mano</span>
+            </button>
+            <button type="button" class="choice-btn" data-value="Pierna / Pantorrilla">
+              <span class="font-bold text-xs">Pierna</span>
+            </button>
+            <button type="button" class="choice-btn" data-value="Cuello / Clavícula">
+              <span class="font-bold text-xs">Cuello</span>
+            </button>
+            <button type="button" class="choice-btn" data-value="Abdomen / Pecho / Espalda">
+              <span class="font-bold text-xs">Abdomen / Pecho</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 4: Size -->
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider text-gray-300 mb-2.5">4. Tamaño aproximado</label>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5" id="stepSize">
+            <button type="button" class="choice-btn active" data-value="Hasta 12 cm">
+              <span class="font-bold text-xs block">Hasta 12 cm</span>
+              <span class="text-[10px] text-gray-400">Pieza individual</span>
+            </button>
+            <button type="button" class="choice-btn" data-value="15 a 25 cm">
+              <span class="font-bold text-xs block">15 a 25 cm</span>
+              <span class="text-[10px] text-gray-400">Media manga / Gran detalle</span>
+            </button>
+            <button type="button" class="choice-btn" data-value="Manga / Sesión completa">
+              <span class="font-bold text-xs block">Manga / Espalda</span>
+              <span class="text-[10px] text-gray-400">Sesión completa</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Summary & WhatsApp Button -->
+        <div class="p-4 rounded-xl bg-dark border border-border space-y-3">
+          <div class="text-xs text-gray-400 font-mono" id="liveSummaryText">
+            "Hola Caber! Quiero consultar por un tattoo: Estudio Avellaneda, Estilo Black & Grey, Zona Brazo, Tamaño Hasta 12 cm."
+          </div>
+
+          <a id="btnSendQuote" 
+             href="#" 
+             target="_blank" 
+             rel="noopener noreferrer" 
+             class="btn-primary w-full py-3.5 text-center flex items-center justify-center gap-2 text-xs sm:text-sm font-bold uppercase tracking-wider">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+            </svg>
+            <span>Consultar Turno al +54 9 11 2723-3546</span>
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FAQ SECTION -->
+  <section id="faq" class="py-20 bg-surface border-t border-border">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-xl mx-auto mb-12">
+        <span class="section-tag">Dudas Frecuentes</span>
+        <h2 class="font-serif text-2xl sm:text-4xl font-bold uppercase text-white mt-2">
+          PREGUNTAS HABITUALES
+        </h2>
+      </div>
+
+      <div class="space-y-3" id="faqAccordion">
+        
+        <div class="faq-item p-5 rounded-xl">
+          <button class="faq-trigger flex items-center justify-between w-full text-left font-serif text-base sm:text-lg font-bold text-white">
+            <span>¿Cómo se reserva un turno y cuál es la seña?</span>
+            <span class="faq-icon text-gray-400 text-xl font-light">&plus;</span>
+          </button>
+          <div class="faq-content hidden pt-3 text-gray-400 text-xs sm:text-sm leading-relaxed border-t border-border mt-3">
+            Los turnos se coordinan directamente por WhatsApp al <strong class="text-white">+54 9 11 2723-3546</strong>. Para fijar fecha y horario en Avellaneda o Villa Elisa se solicita una seña previa, la cual se descuenta del total el día de la sesión.
+          </div>
+        </div>
+
+        <div class="faq-item p-5 rounded-xl">
+          <button class="faq-trigger flex items-center justify-between w-full text-left font-serif text-base sm:text-lg font-bold text-white">
+            <span>¿Cómo llegar a los estudios de Avellaneda y Villa Elisa?</span>
+            <span class="faq-icon text-gray-400 text-xl font-light">&plus;</span>
+          </button>
+          <div class="faq-content hidden pt-3 text-gray-400 text-xs sm:text-sm leading-relaxed border-t border-border mt-3">
+            El estudio de Avellaneda se ubica en <strong class="text-white">Av. Cabildo 1777 (Piñeyro)</strong>, de acceso inmediato desde CABA y Zona Sur. El estudio de Villa Elisa se encuentra en <strong class="text-white">Calle 412 & Calle 115</strong> en un entorno residencial tranquilo. Podés ver las ubicaciones exactas en los mapas interactivos de arriba.
+          </div>
+        </div>
+
+        <div class="faq-item p-5 rounded-xl">
+          <button class="faq-trigger flex items-center justify-between w-full text-left font-serif text-base sm:text-lg font-bold text-white">
+            <span>¿Qué normas de higiene y bioseguridad se aplican?</span>
+            <span class="faq-icon text-gray-400 text-xl font-light">&plus;</span>
+          </button>
+          <div class="faq-content hidden pt-3 text-gray-400 text-xs sm:text-sm leading-relaxed border-t border-border mt-3">
+            Trabajamos con materiales descartables de primera marca que se abren exclusivamente delante del cliente, campo quirúrgico esterilizado, tintas importadas certificadas y desinfección hospitalaria rigurosa.
+          </div>
+        </div>
+
+        <div class="faq-item p-5 rounded-xl">
+          <button class="faq-trigger flex items-center justify-between w-full text-left font-serif text-base sm:text-lg font-bold text-white">
+            <span>¿Puedo llevar mi propia referencia o armamos el diseño juntos?</span>
+            <span class="faq-icon text-gray-400 text-xl font-light">&plus;</span>
+          </button>
+          <div class="faq-content hidden pt-3 text-gray-400 text-xs sm:text-sm leading-relaxed border-t border-border mt-3">
+            Sí. Podés mandarme fotos de referencia y armamos un diseño adaptado a tu anatomía y estilo para que sea único.
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-black py-10 border-t border-border text-gray-400 text-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+      
+      <div class="flex items-center gap-3">
+        <img src="assets/images/caber-artist.png" alt="Caber Tattoo" class="w-8 h-8 rounded-full object-cover border border-white/20">
+        <div>
+          <span class="font-serif font-bold text-white text-xs uppercase tracking-wider block">CABER TATTOO</span>
+          <span class="text-[10px] text-gray-500">Avellaneda &bull; Villa Elisa</span>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-6">
+        <a href="#estudios" class="hover:text-white transition-colors">Estudios</a>
+        <a href="#portfolio" class="hover:text-white transition-colors">Trabajos</a>
+        <a href="#cotizador" class="hover:text-white transition-colors">Cotizar</a>
+        <a href="https://wa.me/5491127233546" target="_blank" class="hover:text-white transition-colors font-semibold">+54 9 11 2723-3546</a>
+      </div>
+
+      <div class="text-gray-500">
+        &copy; 2026 Caber Tattoo. Todos los derechos reservados.
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- FLOATING WHATSAPP -->
+  <div class="fixed bottom-6 right-6 z-50">
+    <a href="https://wa.me/5491127233546?text=Hola%20Caber!%20Vengo%20desde%20la%20web%20y%20quiero%20consultar%20un%20turno" 
+       target="_blank" 
+       rel="noopener noreferrer" 
+       class="w-12 h-12 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white flex items-center justify-center shadow-lg transition-transform hover:scale-105" 
+       aria-label="Contactar por WhatsApp a Caber Tattoo">
+      <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+      </svg>
+    </a>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
