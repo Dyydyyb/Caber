@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       const card = document.createElement('div');
-      card.className = `gallery-item group relative aspect-[3/4] cursor-pointer reveal reveal-delay-${(index % 4) + 1}`;
+      card.className = `gallery-item group relative aspect-[3/4] cursor-pointer reveal reveal-delay-${(index % 4) + 1} revealed`;
       card.setAttribute('data-category', item.category || 'otros');
       card.setAttribute('data-src', item.imageSrc);
       card.setAttribute('data-title', item.title);
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
       card.setAttribute('data-tag', item.categoryLabel || 'Tatuaje');
 
       card.innerHTML = `
-        <img src="${item.imageSrc}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+        <img src="${item.imageSrc}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
         <div class="gallery-overlay">
           <span class="tag-badge">${item.categoryLabel || 'Tatuaje'}</span>
           <h3 class="font-serif text-base font-bold text-white mt-1">${item.title}</h3>
@@ -83,6 +83,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
       galleryGrid.appendChild(card);
     });
+
+    // Re-bind intersection observer if available
+    if (window.galleryObserver) {
+      galleryGrid.querySelectorAll('.reveal').forEach(el => window.galleryObserver.observe(el));
+    }
 
     // Update filter tabs
     if (portfolioFilters) {
@@ -455,7 +460,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // -------------------------------------------------------------
   const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
   if ('IntersectionObserver' in window) {
-    const revealObserver = new IntersectionObserver((entries, observer) => {
+    window.galleryObserver = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('revealed');
@@ -464,11 +469,11 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }, {
       root: null,
-      threshold: 0.12,
-      rootMargin: '0px 0px -40px 0px'
+      threshold: 0.08,
+      rootMargin: '0px 0px -20px 0px'
     });
 
-    revealElements.forEach(el => revealObserver.observe(el));
+    revealElements.forEach(el => window.galleryObserver.observe(el));
   } else {
     revealElements.forEach(el => el.classList.add('revealed'));
   }
