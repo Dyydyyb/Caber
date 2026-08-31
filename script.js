@@ -209,18 +209,162 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // -------------------------------------------------------------
-  // 7. Mini-slider Cards Lightbox Click
+  // 7. 3D Coverflow Slider Logic
   // -------------------------------------------------------------
-  const minisliderCards = document.querySelectorAll('.minislider-card');
-  minisliderCards.forEach(item => {
-    item.addEventListener('click', () => {
-      const src = item.getAttribute('data-src');
-      const title = item.getAttribute('data-title');
-      const desc = item.getAttribute('data-desc');
-      const tag = item.getAttribute('data-tag');
-      if (src) openModal(src, title, desc, tag);
+  const coverflowSlider = document.getElementById('coverflowSlider');
+  const slides = document.querySelectorAll('.coverflow-slide');
+  const prevBtn = document.getElementById('prevSlideBtn');
+  const nextBtn = document.getElementById('nextSlideBtn');
+  const dotsContainer = document.getElementById('sliderDots');
+
+  if (coverflowSlider && slides.length > 0) {
+    let currentIndex = 0;
+    const totalSlides = slides.length;
+    let autoPlayTimer = null;
+
+    // Create Indicator Dots
+    if (dotsContainer) {
+      dotsContainer.innerHTML = '';
+      slides.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.className = `slider-dot ${i === 0 ? 'active' : ''}`;
+        dot.setAttribute('aria-label', `Ir al slide ${i + 1}`);
+        dot.addEventListener('click', () => {
+          goToSlide(i);
+          resetAutoPlay();
+        });
+        dotsContainer.appendChild(dot);
+      });
+    }
+
+    const updateSlider = () => {
+      slides.forEach((slide, i) => {
+        slide.className = 'coverflow-slide';
+
+        // Calculate cyclic distance
+        let diff = (i - currentIndex + totalSlides) % totalSlides;
+        if (diff > totalSlides / 2) diff -= totalSlides;
+
+        if (diff === 0) {
+          slide.classList.add('active');
+        } else if (diff === -1) {
+          slide.classList.add('prev-1');
+        } else if (diff === 1) {
+          slide.classList.add('next-1');
+        } else if (diff === -2) {
+          slide.classList.add('prev-2');
+        } else if (diff === 2) {
+          slide.classList.add('next-2');
+        } else if (diff < -2) {
+          slide.classList.add('hidden-far-left');
+        } else if (diff > 2) {
+          slide.classList.add('hidden-far-right');
+        }
+      });
+
+      // Update Dots
+      if (dotsContainer) {
+        const dots = dotsContainer.querySelectorAll('.slider-dot');
+        dots.forEach((dot, idx) => {
+          if (idx === currentIndex) {
+            dot.classList.add('active');
+          } else {
+            dot.classList.remove('active');
+          }
+        });
+      }
+    };
+
+    const goToSlide = (index) => {
+      currentIndex = (index + totalSlides) % totalSlides;
+      updateSlider();
+    };
+
+    const nextSlide = () => {
+      goToSlide(currentIndex + 1);
+    };
+
+    const prevSlide = () => {
+      goToSlide(currentIndex - 1);
+    };
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        nextSlide();
+        resetAutoPlay();
+      });
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        prevSlide();
+        resetAutoPlay();
+      });
+    }
+
+    // Clicking a slide: if active, open modal; if side, advance to it
+    slides.forEach((slide, i) => {
+      slide.addEventListener('click', () => {
+        if (i === currentIndex) {
+          const src = slide.getAttribute('data-src');
+          const title = slide.getAttribute('data-title');
+          const desc = slide.getAttribute('data-desc');
+          const tag = slide.getAttribute('data-tag');
+          if (src) openModal(src, title, desc, tag);
+        } else {
+          goToSlide(i);
+          resetAutoPlay();
+        }
+      });
     });
-  });
+
+    // Auto Advance every 3.5 seconds
+    const startAutoPlay = () => {
+      if (!autoPlayTimer) {
+        autoPlayTimer = setInterval(nextSlide, 3500);
+      }
+    };
+
+    const stopAutoPlay = () => {
+      if (autoPlayTimer) {
+        clearInterval(autoPlayTimer);
+        autoPlayTimer = null;
+      }
+    };
+
+    const resetAutoPlay = () => {
+      stopAutoPlay();
+      startAutoPlay();
+    };
+
+    coverflowSlider.addEventListener('mouseenter', stopAutoPlay);
+    coverflowSlider.addEventListener('mouseleave', startAutoPlay);
+
+    // Touch support (swipe left/right)
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    coverflowSlider.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+      stopAutoPlay();
+    }, { passive: true });
+
+    coverflowSlider.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      if (touchEndX < touchStartX - 40) {
+        nextSlide();
+      } else if (touchEndX > touchStartX + 40) {
+        prevSlide();
+      }
+      startAutoPlay();
+    }, { passive: true });
+
+    // Initialize
+    updateSlider();
+    startAutoPlay();
+  }
 
   // -------------------------------------------------------------
   // 8. Scroll Reveal Observer

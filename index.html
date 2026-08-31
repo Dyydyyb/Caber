@@ -104,14 +104,14 @@
   </header>
 
   <!-- HERO SECTION (FULL HORIZONTAL WIDTH) -->
-  <section id="hero" class="relative w-full pt-28 pb-16 md:pt-36 md:pb-20 overflow-hidden flex flex-col items-center justify-center border-b border-border/40">
+  <section id="hero" class="relative w-full pt-20 pb-16 md:pt-28 md:pb-20 overflow-hidden flex flex-col items-center justify-center border-b border-border/40">
     
-    <!-- FULL-WIDTH BACKGROUND LOGO EMBLEM (SUPERPUESTA DE FONDO ABARCANDO TODO EL ESPACIO) -->
-    <div class="absolute inset-0 w-full h-full flex items-center justify-center pointer-events-none select-none z-0 overflow-hidden">
+    <!-- FULL-WIDTH BACKGROUND LOGO EMBLEM (POSICIONADA MÁS ARRIBA) -->
+    <div class="absolute inset-0 w-full h-full flex items-start justify-center pointer-events-none select-none z-0 overflow-hidden pt-6 sm:pt-10 md:pt-12">
       <img src="assets/images/caber-tattoo-logo.png" 
            alt="Caber Tattoo Tatuajes" 
-           class="w-[500px] sm:w-[750px] md:w-[1000px] max-w-none object-contain opacity-20 md:opacity-30 filter contrast-125">
-      <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/30 to-dark/80"></div>
+           class="w-[550px] sm:w-[800px] md:w-[1050px] max-w-none object-contain opacity-25 md:opacity-35 filter contrast-125">
+      <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/20 to-dark/70"></div>
       <div class="absolute inset-0 bg-gradient-to-r from-dark via-transparent to-dark"></div>
     </div>
 
@@ -148,81 +148,87 @@
 
     </div>
 
-    <!-- MINISLIDER CONTINUO DE TATUAJES (FULL HORIZONTAL WIDTH) -->
-    <div class="relative z-10 w-full mt-14 reveal reveal-delay-2">
-      <div class="minislider-wrapper">
-        <div class="minislider-track" id="minisliderTrack">
-          
-          <!-- Set 1 of 8 Tattoos -->
-          <div class="minislider-card" data-src="assets/images/tattoo-filigrana.png" data-title="Manga Filigrana Ornamental" data-desc="Técnica Black & Grey en antebrazo y codo con sombreado de transición suave." data-tag="Black & Grey">
-            <img src="assets/images/tattoo-filigrana.png" alt="Tatuaje Filigrana" loading="lazy">
-            <div class="card-caption"><span class="text-xs font-bold text-white block">Manga Filigrana</span><span class="text-[10px] text-gray-300">Black & Grey</span></div>
+    <!-- 3D COVERFLOW SLIDER (IMAGEN CENTRAL ZOOM CON LATERALES DE FONDO) -->
+    <div class="relative z-10 w-full mt-14 reveal reveal-delay-2 flex flex-col items-center">
+      <div class="coverflow-container relative w-full max-w-6xl mx-auto h-[380px] sm:h-[460px] md:h-[500px] flex items-center justify-center overflow-hidden px-4" id="coverflowSlider">
+        
+        <!-- Slides Items -->
+        <div class="coverflow-slide" data-index="0" data-src="assets/images/tattoo-filigrana.png" data-title="Manga Filigrana Ornamental" data-desc="Técnica Black & Grey en antebrazo y codo con sombreado de transición suave." data-tag="Black & Grey">
+          <img src="assets/images/tattoo-filigrana.png" alt="Tatuaje Filigrana">
+          <div class="slide-caption">
+            <span class="tag-badge">Black & Grey</span>
+            <h4 class="font-serif text-sm sm:text-base font-bold text-white mt-1">Manga Filigrana</h4>
           </div>
-          <div class="minislider-card" data-src="assets/images/tattoo-cuello-script.png" data-title="Script en Cuello & Clavícula" data-desc="Caligrafía fluida vertical con líneas rojas y negras en cuello y trapecio." data-tag="Lettering / Cuello">
-            <img src="assets/images/tattoo-cuello-script.png" alt="Tatuaje Cuello Script" loading="lazy">
-            <div class="card-caption"><span class="text-xs font-bold text-white block">Cuello Script</span><span class="text-[10px] text-gray-300">Lettering</span></div>
-          </div>
-          <div class="minislider-card" data-src="assets/images/tattoo-daga-biomecanica.png" data-title="Daga Biomecánica & Ojo" data-desc="Pieza en pierna de estructura biomecánica orgánica con hueso y ojo hiperrealista." data-tag="Dark Realism">
-            <img src="assets/images/tattoo-daga-biomecanica.png" alt="Tatuaje Daga Biomecánica" loading="lazy">
-            <div class="card-caption"><span class="text-xs font-bold text-white block">Daga Biomecánica</span><span class="text-[10px] text-gray-300">Dark Realism</span></div>
-          </div>
-          <div class="minislider-card" data-src="assets/images/tattoo-unforgettable.jpg" data-title="Script 'Unforgettable'" data-desc="Caligrafía cursiva elegante en bajo vientre adaptada a la anatomía." data-tag="Lettering">
-            <img src="assets/images/tattoo-unforgettable.jpg" alt="Tatuaje Unforgettable" loading="lazy">
-            <div class="card-caption"><span class="text-xs font-bold text-white block">Unforgettable</span><span class="text-[10px] text-gray-300">Lettering</span></div>
-          </div>
-          <div class="minislider-card" data-src="assets/images/tattoo-anime-dark.png" data-title="Mano Demoníaca Anime" data-desc="Inspiración anime dark con piel desgarrada y saturación de tinta roja." data-tag="Anime & Dark">
-            <img src="assets/images/tattoo-anime-dark.png" alt="Tatuaje Anime Dark" loading="lazy">
-            <div class="card-caption"><span class="text-xs font-bold text-white block">Mano Maldita</span><span class="text-[10px] text-gray-300">Anime / Dark</span></div>
-          </div>
-          <div class="minislider-card" data-src="assets/images/tattoo-muneca-blackwork.png" data-title="Cyber Blackwork Muñeca" data-desc="Diseño envolvente en muñeca y dorso con negro sólido de alto impacto." data-tag="Blackwork">
-            <img src="assets/images/tattoo-muneca-blackwork.png" alt="Tatuaje Cyber Blackwork" loading="lazy">
-            <div class="card-caption"><span class="text-xs font-bold text-white block">Cyber Blackwork</span><span class="text-[10px] text-gray-300">Blackwork</span></div>
-          </div>
-          <div class="minislider-card" data-src="assets/images/tattoo-lettering.png" data-title="Gothic Script 'Wasted'" data-desc="Caligrafía gótica/chicana en pantorrilla con línea dinámica y splash rojo." data-tag="Lettering">
-            <img src="assets/images/tattoo-lettering.png" alt="Tatuaje Lettering" loading="lazy">
-            <div class="card-caption"><span class="text-xs font-bold text-white block">Wasted Script</span><span class="text-[10px] text-gray-300">Lettering</span></div>
-          </div>
-          <div class="minislider-card" data-src="assets/images/tattoo-mascaras.png" data-title="Máscaras de Teatro en Cuello" data-desc="Clásico 'Smile Now, Cry Later' con volumen pétreo y contrastes teatrales." data-tag="Cuello">
-            <img src="assets/images/tattoo-mascaras.png" alt="Tatuaje Máscaras" loading="lazy">
-            <div class="card-caption"><span class="text-xs font-bold text-white block">Máscaras Teatro</span><span class="text-[10px] text-gray-300">Cuello</span></div>
-          </div>
-
-          <!-- Duplicate Set of 8 for Infinite Seamless Loop -->
-          <div class="minislider-card" data-src="assets/images/tattoo-filigrana.png" data-title="Manga Filigrana Ornamental" data-desc="Técnica Black & Grey en antebrazo y codo con sombreado de transición suave." data-tag="Black & Grey">
-            <img src="assets/images/tattoo-filigrana.png" alt="Tatuaje Filigrana" loading="lazy">
-            <div class="card-caption"><span class="text-xs font-bold text-white block">Manga Filigrana</span><span class="text-[10px] text-gray-300">Black & Grey</span></div>
-          </div>
-          <div class="minislider-card" data-src="assets/images/tattoo-cuello-script.png" data-title="Script en Cuello & Clavícula" data-desc="Caligrafía fluida vertical con líneas rojas y negras en cuello y trapecio." data-tag="Lettering / Cuello">
-            <img src="assets/images/tattoo-cuello-script.png" alt="Tatuaje Cuello Script" loading="lazy">
-            <div class="card-caption"><span class="text-xs font-bold text-white block">Cuello Script</span><span class="text-[10px] text-gray-300">Lettering</span></div>
-          </div>
-          <div class="minislider-card" data-src="assets/images/tattoo-daga-biomecanica.png" data-title="Daga Biomecánica & Ojo" data-desc="Pieza en pierna de estructura biomecánica orgánica con hueso y ojo hiperrealista." data-tag="Dark Realism">
-            <img src="assets/images/tattoo-daga-biomecanica.png" alt="Tatuaje Daga Biomecánica" loading="lazy">
-            <div class="card-caption"><span class="text-xs font-bold text-white block">Daga Biomecánica</span><span class="text-[10px] text-gray-300">Dark Realism</span></div>
-          </div>
-          <div class="minislider-card" data-src="assets/images/tattoo-unforgettable.jpg" data-title="Script 'Unforgettable'" data-desc="Caligrafía cursiva elegante en bajo vientre adaptada a la anatomía." data-tag="Lettering">
-            <img src="assets/images/tattoo-unforgettable.jpg" alt="Tatuaje Unforgettable" loading="lazy">
-            <div class="card-caption"><span class="text-xs font-bold text-white block">Unforgettable</span><span class="text-[10px] text-gray-300">Lettering</span></div>
-          </div>
-          <div class="minislider-card" data-src="assets/images/tattoo-anime-dark.png" data-title="Mano Demoníaca Anime" data-desc="Inspiración anime dark con piel desgarrada y saturación de tinta roja." data-tag="Anime & Dark">
-            <img src="assets/images/tattoo-anime-dark.png" alt="Tatuaje Anime Dark" loading="lazy">
-            <div class="card-caption"><span class="text-xs font-bold text-white block">Mano Maldita</span><span class="text-[10px] text-gray-300">Anime / Dark</span></div>
-          </div>
-          <div class="minislider-card" data-src="assets/images/tattoo-muneca-blackwork.png" data-title="Cyber Blackwork Muñeca" data-desc="Diseño envolvente en muñeca y dorso con negro sólido de alto impacto." data-tag="Blackwork">
-            <img src="assets/images/tattoo-muneca-blackwork.png" alt="Tatuaje Cyber Blackwork" loading="lazy">
-            <div class="card-caption"><span class="text-xs font-bold text-white block">Cyber Blackwork</span><span class="text-[10px] text-gray-300">Blackwork</span></div>
-          </div>
-          <div class="minislider-card" data-src="assets/images/tattoo-lettering.png" data-title="Gothic Script 'Wasted'" data-desc="Caligrafía gótica/chicana en pantorrilla con línea dinámica y splash rojo." data-tag="Lettering">
-            <img src="assets/images/tattoo-lettering.png" alt="Tatuaje Lettering" loading="lazy">
-            <div class="card-caption"><span class="text-xs font-bold text-white block">Wasted Script</span><span class="text-[10px] text-gray-300">Lettering</span></div>
-          </div>
-          <div class="minislider-card" data-src="assets/images/tattoo-mascaras.png" data-title="Máscaras de Teatro en Cuello" data-desc="Clásico 'Smile Now, Cry Later' con volumen pétreo y contrastes teatrales." data-tag="Cuello">
-            <img src="assets/images/tattoo-mascaras.png" alt="Tatuaje Máscaras" loading="lazy">
-            <div class="card-caption"><span class="text-xs font-bold text-white block">Máscaras Teatro</span><span class="text-[10px] text-gray-300">Cuello</span></div>
-          </div>
-
         </div>
+
+        <div class="coverflow-slide" data-index="1" data-src="assets/images/tattoo-cuello-script.png" data-title="Script en Cuello & Clavícula" data-desc="Caligrafía fluida vertical con líneas rojas y negras en cuello y trapecio." data-tag="Lettering / Cuello">
+          <img src="assets/images/tattoo-cuello-script.png" alt="Tatuaje Cuello Script">
+          <div class="slide-caption">
+            <span class="tag-badge">Lettering / Cuello</span>
+            <h4 class="font-serif text-sm sm:text-base font-bold text-white mt-1">Cuello Script</h4>
+          </div>
+        </div>
+
+        <div class="coverflow-slide" data-index="2" data-src="assets/images/tattoo-daga-biomecanica.png" data-title="Daga Biomecánica & Ojo" data-desc="Pieza en pierna de estructura biomecánica orgánica con hueso y ojo hiperrealista." data-tag="Dark Realism">
+          <img src="assets/images/tattoo-daga-biomecanica.png" alt="Tatuaje Daga Biomecánica">
+          <div class="slide-caption">
+            <span class="tag-badge">Dark Realism</span>
+            <h4 class="font-serif text-sm sm:text-base font-bold text-white mt-1">Daga Biomecánica</h4>
+          </div>
+        </div>
+
+        <div class="coverflow-slide" data-index="3" data-src="assets/images/tattoo-unforgettable.jpg" data-title="Script 'Unforgettable'" data-desc="Caligrafía cursiva elegante en bajo vientre adaptada a la anatomía." data-tag="Lettering">
+          <img src="assets/images/tattoo-unforgettable.jpg" alt="Tatuaje Unforgettable">
+          <div class="slide-caption">
+            <span class="tag-badge">Lettering</span>
+            <h4 class="font-serif text-sm sm:text-base font-bold text-white mt-1">Unforgettable</h4>
+          </div>
+        </div>
+
+        <div class="coverflow-slide" data-index="4" data-src="assets/images/tattoo-anime-dark.png" data-title="Mano Demoníaca Anime" data-desc="Inspiración anime dark con piel desgarrada y saturación de tinta roja." data-tag="Anime & Dark">
+          <img src="assets/images/tattoo-anime-dark.png" alt="Tatuaje Anime Dark">
+          <div class="slide-caption">
+            <span class="tag-badge">Anime & Dark</span>
+            <h4 class="font-serif text-sm sm:text-base font-bold text-white mt-1">Mano Maldita</h4>
+          </div>
+        </div>
+
+        <div class="coverflow-slide" data-index="5" data-src="assets/images/tattoo-muneca-blackwork.png" data-title="Cyber Blackwork Muñeca" data-desc="Diseño envolvente en muñeca y dorso con negro sólido de alto impacto." data-tag="Blackwork">
+          <img src="assets/images/tattoo-muneca-blackwork.png" alt="Tatuaje Cyber Blackwork">
+          <div class="slide-caption">
+            <span class="tag-badge">Blackwork</span>
+            <h4 class="font-serif text-sm sm:text-base font-bold text-white mt-1">Cyber Blackwork</h4>
+          </div>
+        </div>
+
+        <div class="coverflow-slide" data-index="6" data-src="assets/images/tattoo-lettering.png" data-title="Gothic Script 'Wasted'" data-desc="Caligrafía gótica/chicana en pantorrilla con línea dinámica y splash rojo." data-tag="Lettering">
+          <img src="assets/images/tattoo-lettering.png" alt="Tatuaje Lettering">
+          <div class="slide-caption">
+            <span class="tag-badge">Lettering</span>
+            <h4 class="font-serif text-sm sm:text-base font-bold text-white mt-1">Wasted Script</h4>
+          </div>
+        </div>
+
+        <div class="coverflow-slide" data-index="7" data-src="assets/images/tattoo-mascaras.png" data-title="Máscaras de Teatro en Cuello" data-desc="Clásico 'Smile Now, Cry Later' con volumen pétreo y contrastes teatrales." data-tag="Cuello">
+          <img src="assets/images/tattoo-mascaras.png" alt="Tatuaje Máscaras">
+          <div class="slide-caption">
+            <span class="tag-badge">Cuello</span>
+            <h4 class="font-serif text-sm sm:text-base font-bold text-white mt-1">Máscaras Teatro</h4>
+          </div>
+        </div>
+
+        <!-- Navigation arrows -->
+        <button id="prevSlideBtn" class="coverflow-arrow left-arrow" aria-label="Tatuaje anterior">
+          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+        </button>
+        <button id="nextSlideBtn" class="coverflow-arrow right-arrow" aria-label="Tatuaje siguiente">
+          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </button>
+
       </div>
+
+      <!-- Indicator Dots -->
+      <div class="flex items-center gap-2 mt-4" id="sliderDots"></div>
     </div>
 
   </section>

@@ -307,91 +307,204 @@ body {
 .text-crimson { color: var(--color-crimson); }
 
 /* ==========================================================================
-   MINI-SLIDER (MARQUEE) DE TATUAJES
+   3D COVERFLOW SLIDER DE TATUAJES
+   Zoomed active central slide + background depth side slides
    ========================================================================== */
-.minislider-wrapper {
-  width: 100vw;
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
-  overflow: hidden;
-  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+.coverflow-container {
+  perspective: 1200px;
 }
 
-.minislider-track {
-  display: flex;
-  gap: 16px;
-  width: max-content;
-  animation: scrollMarquee 35s linear infinite;
-}
-
-.minislider-track:hover {
-  animation-play-state: paused;
-}
-
-@keyframes scrollMarquee {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-.minislider-card {
-  width: 220px;
-  height: 300px;
-  flex-shrink: 0;
-  border-radius: 14px;
+.coverflow-slide {
+  position: absolute;
+  width: 250px;
+  height: 340px;
+  border-radius: 18px;
   overflow: hidden;
   border: 1px solid var(--border-color);
   background: var(--bg-surface);
-  position: relative;
   cursor: pointer;
-  transition: var(--transition-smooth);
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1),
+              opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1),
+              filter 0.6s cubic-bezier(0.25, 1, 0.5, 1),
+              box-shadow 0.6s cubic-bezier(0.25, 1, 0.5, 1),
+              border-color 0.4s ease;
+  user-select: none;
 }
 
-@media (min-width: 768px) {
-  .minislider-card {
-    width: 260px;
-    height: 350px;
+@media (min-width: 640px) {
+  .coverflow-slide {
+    width: 290px;
+    height: 400px;
   }
 }
 
-.minislider-card img {
+@media (min-width: 1024px) {
+  .coverflow-slide {
+    width: 320px;
+    height: 440px;
+  }
+}
+
+.coverflow-slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  pointer-events: none;
 }
 
-.minislider-card:hover {
-  border-color: var(--border-strong);
-  transform: translateY(-4px);
-}
-
-.minislider-card:hover img {
-  transform: scale(1.08);
-}
-
-.minislider-card .card-caption {
+.slide-caption {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 14px;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, transparent 100%);
+  padding: 16px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.4) 70%, transparent 100%);
   opacity: 0;
-  transform: translateY(6px);
+  transform: translateY(10px);
   transition: var(--transition-smooth);
 }
 
-.minislider-card:hover .card-caption {
+.coverflow-slide.active .slide-caption {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Slide 3D Positions */
+/* Center / Zoomed Active */
+.coverflow-slide.active {
+  transform: translateX(0) scale(1.15);
+  z-index: 30;
+  opacity: 1;
+  filter: brightness(1.05) contrast(1.05);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.9), 0 0 25px rgba(0, 0, 0, 0.8);
+}
+
+/* Left Immediate */
+.coverflow-slide.prev-1 {
+  transform: translateX(-55%) scale(0.88) rotateY(18deg);
+  z-index: 20;
+  opacity: 0.65;
+  filter: brightness(0.7) blur(1px);
+}
+
+@media (min-width: 768px) {
+  .coverflow-slide.prev-1 {
+    transform: translateX(-80%) scale(0.88) rotateY(22deg);
+  }
+}
+
+/* Right Immediate */
+.coverflow-slide.next-1 {
+  transform: translateX(55%) scale(0.88) rotateY(-18deg);
+  z-index: 20;
+  opacity: 0.65;
+  filter: brightness(0.7) blur(1px);
+}
+
+@media (min-width: 768px) {
+  .coverflow-slide.next-1 {
+    transform: translateX(80%) scale(0.88) rotateY(-22deg);
+  }
+}
+
+/* Left Further */
+.coverflow-slide.prev-2 {
+  transform: translateX(-100%) scale(0.72) rotateY(32deg);
+  z-index: 10;
+  opacity: 0.3;
+  filter: brightness(0.4) blur(2.5px);
+}
+
+@media (min-width: 768px) {
+  .coverflow-slide.prev-2 {
+    transform: translateX(-155%) scale(0.72) rotateY(35deg);
+  }
+}
+
+/* Right Further */
+.coverflow-slide.next-2 {
+  transform: translateX(100%) scale(0.72) rotateY(-32deg);
+  z-index: 10;
+  opacity: 0.3;
+  filter: brightness(0.4) blur(2.5px);
+}
+
+@media (min-width: 768px) {
+  .coverflow-slide.next-2 {
+    transform: translateX(155%) scale(0.72) rotateY(-35deg);
+  }
+}
+
+/* Hidden Far Slides */
+.coverflow-slide.hidden-far-left {
+  transform: translateX(-220%) scale(0.5);
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.coverflow-slide.hidden-far-right {
+  transform: translateX(220%) scale(0.5);
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Coverflow Navigation Arrows */
+.coverflow-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 40;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(18, 18, 21, 0.85);
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.coverflow-arrow:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--border-strong);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.left-arrow {
+  left: 8px;
+}
+
+@media (min-width: 768px) {
+  .left-arrow { left: 24px; }
+}
+
+.right-arrow {
+  right: 8px;
+}
+
+@media (min-width: 768px) {
+  .right-arrow { right: 24px; }
+}
+
+/* Slider Indicator Dots */
+.slider-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.slider-dot.active {
+  width: 24px;
+  background: var(--color-crimson);
 }
 
 /* ==========================================================================
