@@ -430,21 +430,32 @@ document.addEventListener('DOMContentLoaded', () => {
     coverflowSlider.addEventListener('mouseenter', stopAutoPlay);
     coverflowSlider.addEventListener('mouseleave', startAutoPlay);
 
-    // Touch support (swipe left/right)
+    // Touch support (swipe left/right sin interferir con scroll vertical)
     let touchStartX = 0;
+    let touchStartY = 0;
     let touchEndX = 0;
+    let touchEndY = 0;
 
     coverflowSlider.addEventListener('touchstart', (e) => {
-      touchStartX = e.changedTouches[0].screenX;
+      touchStartX = e.changedTouches[0].clientX;
+      touchStartY = e.changedTouches[0].clientY;
       stopAutoPlay();
     }, { passive: true });
 
     coverflowSlider.addEventListener('touchend', (e) => {
-      touchEndX = e.changedTouches[0].screenX;
-      if (touchEndX < touchStartX - 40) {
-        nextSlide();
-      } else if (touchEndX > touchStartX + 40) {
-        prevSlide();
+      touchEndX = e.changedTouches[0].clientX;
+      touchEndY = e.changedTouches[0].clientY;
+      
+      const diffX = touchEndX - touchStartX;
+      const diffY = touchEndY - touchStartY;
+
+      // Solo avanzar si el swipe fue predominantemente horizontal (>45px y mayor que el vertical)
+      if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 45) {
+        if (diffX < 0) {
+          nextSlide();
+        } else {
+          prevSlide();
+        }
       }
       startAutoPlay();
     }, { passive: true });

@@ -41,24 +41,15 @@ html {
   font-family: var(--font-sans);
   background-color: var(--bg-dark);
   color: var(--text-light);
-  scroll-behavior: smooth;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   width: 100%;
-  height: 100%;
 }
 
 body {
   background-color: var(--bg-dark);
-  min-height: 100%;
   width: 100%;
   position: relative;
-}
-
-/* Enforce horizontal containment without breaking iOS vertical scroll */
-html, body {
-  overflow-x: clip;
-  overflow-y: auto;
 }
 
 /* Safe container bounds without breaking iOS Safari vertical scroll */
