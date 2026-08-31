@@ -208,4 +208,42 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // -------------------------------------------------------------
+  // 7. Mini-slider Cards Lightbox Click
+  // -------------------------------------------------------------
+  const minisliderCards = document.querySelectorAll('.minislider-card');
+  minisliderCards.forEach(item => {
+    item.addEventListener('click', () => {
+      const src = item.getAttribute('data-src');
+      const title = item.getAttribute('data-title');
+      const desc = item.getAttribute('data-desc');
+      const tag = item.getAttribute('data-tag');
+      if (src) openModal(src, title, desc, tag);
+    });
+  });
+
+  // -------------------------------------------------------------
+  // 8. Scroll Reveal Observer
+  // -------------------------------------------------------------
+  const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+  if ('IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      root: null,
+      threshold: 0.12,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+  } else {
+    revealElements.forEach(el => el.classList.add('revealed'));
+  }
+
 });
+

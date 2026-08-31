@@ -103,73 +103,128 @@
     </div>
   </header>
 
-  <!-- HERO SECTION -->
-  <section id="hero" class="relative pt-24 pb-16 md:pt-32 md:pb-20 overflow-hidden flex items-center justify-center">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+  <!-- HERO SECTION (FULL HORIZONTAL WIDTH) -->
+  <section id="hero" class="relative w-full pt-28 pb-16 md:pt-36 md:pb-20 overflow-hidden flex flex-col items-center justify-center border-b border-border/40">
+    
+    <!-- FULL-WIDTH BACKGROUND LOGO EMBLEM (SUPERPUESTA DE FONDO ABARCANDO TODO EL ESPACIO) -->
+    <div class="absolute inset-0 w-full h-full flex items-center justify-center pointer-events-none select-none z-0 overflow-hidden">
+      <img src="assets/images/caber-tattoo-logo.png" 
+           alt="Caber Tattoo Tatuajes" 
+           class="w-[500px] sm:w-[750px] md:w-[1000px] max-w-none object-contain opacity-20 md:opacity-30 filter contrast-125">
+      <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/30 to-dark/80"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-dark via-transparent to-dark"></div>
+    </div>
+
+    <!-- MAIN INFORMATION SUPERIMPOSED (SUPERPUESTA POR ENCIMA DE LA IMAGEN) -->
+    <div class="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6 reveal">
       
-      <!-- HERO BANNER WITH LOGO AS BACKGROUND AND INFO SUPERIMPOSED ON TOP -->
-      <div class="relative rounded-3xl overflow-hidden border border-border bg-[#0a0a0d] py-16 px-6 sm:px-12 md:py-24 text-center flex flex-col items-center justify-center min-h-[460px]">
-        
-        <!-- Background Logo Image (SUPERPUESTA DE FONDO) -->
-        <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0">
-          <img src="assets/images/caber-tattoo-logo.png" 
-               alt="Caber Tattoo Tatuajes" 
-               class="w-72 sm:w-96 md:w-[460px] max-w-full object-contain opacity-30 md:opacity-40 filter contrast-125">
-          <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0d] via-transparent to-[#0a0a0d]/80"></div>
-        </div>
-
-        <!-- Foreground Information Superpuesta -->
-        <div class="relative z-10 max-w-3xl mx-auto space-y-6">
-          
-          <!-- Studio Location Indicator Badge -->
-          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-surface/90 border border-border text-xs font-semibold backdrop-blur-sm shadow-sm">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-            <span class="text-gray-300 font-medium">Agenda abierta</span>
-            <span class="text-gray-600">&bull;</span>
-            <span class="text-gray-300 uppercase tracking-wider text-[11px]">Estudios en Avellaneda & Villa Elisa</span>
-          </div>
-
-          <!-- Main Title Superpuesto -->
-          <h1 class="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight uppercase text-white max-w-4xl mx-auto leading-tight drop-shadow-md">
-            ARTE EN TU PIEL CON IDENTIDAD Y PRECISIÓN
-          </h1>
-
-          <!-- Subtitle / Main Description -->
-          <p class="text-gray-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed drop-shadow">
-            Tatuajes de autor en dos estudios privados y equipados. Especializado en <strong class="text-white">Black & Grey</strong>, <strong class="text-white">Dark Realism</strong>, <strong class="text-white">Anime Tattoo</strong>, <strong class="text-white">Lettering Custom</strong> y <strong class="text-white">Blackwork</strong>. Materiales 100% descartables y atención personalizada.
-          </p>
-
-          <!-- Action Buttons -->
-          <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
-            <a href="#cotizador" class="btn-primary w-full sm:w-auto py-3.5 px-8 text-xs sm:text-sm uppercase tracking-wider">
-              Cotizar y Agendar Turno
-            </a>
-            <a href="#portfolio" class="btn-secondary w-full sm:w-auto py-3.5 px-7 text-xs sm:text-sm uppercase tracking-wider">
-              Ver Trabajos Realizados
-            </a>
-          </div>
-
-        </div>
-
+      <!-- Studio Location Indicator Badge -->
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-surface/90 border border-border text-xs font-semibold backdrop-blur-md shadow-sm">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+        <span class="text-gray-300 font-medium">Agenda abierta</span>
+        <span class="text-gray-600">&bull;</span>
+        <span class="text-gray-300 uppercase tracking-wider text-[11px]">Estudios en Avellaneda & Villa Elisa</span>
       </div>
 
-      <!-- Preview Row with 4 Featured Pieces -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
-        <div class="aspect-[3/4] rounded-xl overflow-hidden border border-border bg-surface">
-          <img src="assets/images/tattoo-filigrana.png" alt="Tatuaje Filigrana" class="w-full h-full object-cover">
-        </div>
-        <div class="aspect-[3/4] rounded-xl overflow-hidden border border-border bg-surface">
-          <img src="assets/images/tattoo-cuello-script.png" alt="Tatuaje Cuello Script" class="w-full h-full object-cover">
-        </div>
-        <div class="aspect-[3/4] rounded-xl overflow-hidden border border-border bg-surface">
-          <img src="assets/images/tattoo-daga-biomecanica.png" alt="Tatuaje Daga Biomecánica" class="w-full h-full object-cover">
-        </div>
-        <div class="aspect-[3/4] rounded-xl overflow-hidden border border-border bg-surface">
-          <img src="assets/images/tattoo-unforgettable.jpg" alt="Tatuaje Unforgettable" class="w-full h-full object-cover">
-        </div>
+      <!-- Main Title Superimposed -->
+      <h1 class="font-serif text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight uppercase text-white max-w-4xl mx-auto leading-tight drop-shadow-md">
+        ARTE EN TU PIEL CON IDENTIDAD Y PRECISIÓN
+      </h1>
+
+      <!-- Subtitle / Main Description -->
+      <p class="text-gray-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed drop-shadow">
+        Tatuajes de autor en dos estudios privados y equipados. Especializado en <strong class="text-white">Black & Grey</strong>, <strong class="text-white">Dark Realism</strong>, <strong class="text-white">Anime Tattoo</strong>, <strong class="text-white">Lettering Custom</strong> y <strong class="text-white">Blackwork</strong>. Materiales 100% descartables y atención personalizada.
+      </p>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
+        <a href="#cotizador" class="btn-primary w-full sm:w-auto py-3.5 px-8 text-xs sm:text-sm uppercase tracking-wider">
+          Cotizar y Agendar Turno
+        </a>
+        <a href="#portfolio" class="btn-secondary w-full sm:w-auto py-3.5 px-7 text-xs sm:text-sm uppercase tracking-wider">
+          Ver Trabajos Realizados
+        </a>
       </div>
 
     </div>
+
+    <!-- MINISLIDER CONTINUO DE TATUAJES (FULL HORIZONTAL WIDTH) -->
+    <div class="relative z-10 w-full mt-14 reveal reveal-delay-2">
+      <div class="minislider-wrapper">
+        <div class="minislider-track" id="minisliderTrack">
+          
+          <!-- Set 1 of 8 Tattoos -->
+          <div class="minislider-card" data-src="assets/images/tattoo-filigrana.png" data-title="Manga Filigrana Ornamental" data-desc="Técnica Black & Grey en antebrazo y codo con sombreado de transición suave." data-tag="Black & Grey">
+            <img src="assets/images/tattoo-filigrana.png" alt="Tatuaje Filigrana" loading="lazy">
+            <div class="card-caption"><span class="text-xs font-bold text-white block">Manga Filigrana</span><span class="text-[10px] text-gray-300">Black & Grey</span></div>
+          </div>
+          <div class="minislider-card" data-src="assets/images/tattoo-cuello-script.png" data-title="Script en Cuello & Clavícula" data-desc="Caligrafía fluida vertical con líneas rojas y negras en cuello y trapecio." data-tag="Lettering / Cuello">
+            <img src="assets/images/tattoo-cuello-script.png" alt="Tatuaje Cuello Script" loading="lazy">
+            <div class="card-caption"><span class="text-xs font-bold text-white block">Cuello Script</span><span class="text-[10px] text-gray-300">Lettering</span></div>
+          </div>
+          <div class="minislider-card" data-src="assets/images/tattoo-daga-biomecanica.png" data-title="Daga Biomecánica & Ojo" data-desc="Pieza en pierna de estructura biomecánica orgánica con hueso y ojo hiperrealista." data-tag="Dark Realism">
+            <img src="assets/images/tattoo-daga-biomecanica.png" alt="Tatuaje Daga Biomecánica" loading="lazy">
+            <div class="card-caption"><span class="text-xs font-bold text-white block">Daga Biomecánica</span><span class="text-[10px] text-gray-300">Dark Realism</span></div>
+          </div>
+          <div class="minislider-card" data-src="assets/images/tattoo-unforgettable.jpg" data-title="Script 'Unforgettable'" data-desc="Caligrafía cursiva elegante en bajo vientre adaptada a la anatomía." data-tag="Lettering">
+            <img src="assets/images/tattoo-unforgettable.jpg" alt="Tatuaje Unforgettable" loading="lazy">
+            <div class="card-caption"><span class="text-xs font-bold text-white block">Unforgettable</span><span class="text-[10px] text-gray-300">Lettering</span></div>
+          </div>
+          <div class="minislider-card" data-src="assets/images/tattoo-anime-dark.png" data-title="Mano Demoníaca Anime" data-desc="Inspiración anime dark con piel desgarrada y saturación de tinta roja." data-tag="Anime & Dark">
+            <img src="assets/images/tattoo-anime-dark.png" alt="Tatuaje Anime Dark" loading="lazy">
+            <div class="card-caption"><span class="text-xs font-bold text-white block">Mano Maldita</span><span class="text-[10px] text-gray-300">Anime / Dark</span></div>
+          </div>
+          <div class="minislider-card" data-src="assets/images/tattoo-muneca-blackwork.png" data-title="Cyber Blackwork Muñeca" data-desc="Diseño envolvente en muñeca y dorso con negro sólido de alto impacto." data-tag="Blackwork">
+            <img src="assets/images/tattoo-muneca-blackwork.png" alt="Tatuaje Cyber Blackwork" loading="lazy">
+            <div class="card-caption"><span class="text-xs font-bold text-white block">Cyber Blackwork</span><span class="text-[10px] text-gray-300">Blackwork</span></div>
+          </div>
+          <div class="minislider-card" data-src="assets/images/tattoo-lettering.png" data-title="Gothic Script 'Wasted'" data-desc="Caligrafía gótica/chicana en pantorrilla con línea dinámica y splash rojo." data-tag="Lettering">
+            <img src="assets/images/tattoo-lettering.png" alt="Tatuaje Lettering" loading="lazy">
+            <div class="card-caption"><span class="text-xs font-bold text-white block">Wasted Script</span><span class="text-[10px] text-gray-300">Lettering</span></div>
+          </div>
+          <div class="minislider-card" data-src="assets/images/tattoo-mascaras.png" data-title="Máscaras de Teatro en Cuello" data-desc="Clásico 'Smile Now, Cry Later' con volumen pétreo y contrastes teatrales." data-tag="Cuello">
+            <img src="assets/images/tattoo-mascaras.png" alt="Tatuaje Máscaras" loading="lazy">
+            <div class="card-caption"><span class="text-xs font-bold text-white block">Máscaras Teatro</span><span class="text-[10px] text-gray-300">Cuello</span></div>
+          </div>
+
+          <!-- Duplicate Set of 8 for Infinite Seamless Loop -->
+          <div class="minislider-card" data-src="assets/images/tattoo-filigrana.png" data-title="Manga Filigrana Ornamental" data-desc="Técnica Black & Grey en antebrazo y codo con sombreado de transición suave." data-tag="Black & Grey">
+            <img src="assets/images/tattoo-filigrana.png" alt="Tatuaje Filigrana" loading="lazy">
+            <div class="card-caption"><span class="text-xs font-bold text-white block">Manga Filigrana</span><span class="text-[10px] text-gray-300">Black & Grey</span></div>
+          </div>
+          <div class="minislider-card" data-src="assets/images/tattoo-cuello-script.png" data-title="Script en Cuello & Clavícula" data-desc="Caligrafía fluida vertical con líneas rojas y negras en cuello y trapecio." data-tag="Lettering / Cuello">
+            <img src="assets/images/tattoo-cuello-script.png" alt="Tatuaje Cuello Script" loading="lazy">
+            <div class="card-caption"><span class="text-xs font-bold text-white block">Cuello Script</span><span class="text-[10px] text-gray-300">Lettering</span></div>
+          </div>
+          <div class="minislider-card" data-src="assets/images/tattoo-daga-biomecanica.png" data-title="Daga Biomecánica & Ojo" data-desc="Pieza en pierna de estructura biomecánica orgánica con hueso y ojo hiperrealista." data-tag="Dark Realism">
+            <img src="assets/images/tattoo-daga-biomecanica.png" alt="Tatuaje Daga Biomecánica" loading="lazy">
+            <div class="card-caption"><span class="text-xs font-bold text-white block">Daga Biomecánica</span><span class="text-[10px] text-gray-300">Dark Realism</span></div>
+          </div>
+          <div class="minislider-card" data-src="assets/images/tattoo-unforgettable.jpg" data-title="Script 'Unforgettable'" data-desc="Caligrafía cursiva elegante en bajo vientre adaptada a la anatomía." data-tag="Lettering">
+            <img src="assets/images/tattoo-unforgettable.jpg" alt="Tatuaje Unforgettable" loading="lazy">
+            <div class="card-caption"><span class="text-xs font-bold text-white block">Unforgettable</span><span class="text-[10px] text-gray-300">Lettering</span></div>
+          </div>
+          <div class="minislider-card" data-src="assets/images/tattoo-anime-dark.png" data-title="Mano Demoníaca Anime" data-desc="Inspiración anime dark con piel desgarrada y saturación de tinta roja." data-tag="Anime & Dark">
+            <img src="assets/images/tattoo-anime-dark.png" alt="Tatuaje Anime Dark" loading="lazy">
+            <div class="card-caption"><span class="text-xs font-bold text-white block">Mano Maldita</span><span class="text-[10px] text-gray-300">Anime / Dark</span></div>
+          </div>
+          <div class="minislider-card" data-src="assets/images/tattoo-muneca-blackwork.png" data-title="Cyber Blackwork Muñeca" data-desc="Diseño envolvente en muñeca y dorso con negro sólido de alto impacto." data-tag="Blackwork">
+            <img src="assets/images/tattoo-muneca-blackwork.png" alt="Tatuaje Cyber Blackwork" loading="lazy">
+            <div class="card-caption"><span class="text-xs font-bold text-white block">Cyber Blackwork</span><span class="text-[10px] text-gray-300">Blackwork</span></div>
+          </div>
+          <div class="minislider-card" data-src="assets/images/tattoo-lettering.png" data-title="Gothic Script 'Wasted'" data-desc="Caligrafía gótica/chicana en pantorrilla con línea dinámica y splash rojo." data-tag="Lettering">
+            <img src="assets/images/tattoo-lettering.png" alt="Tatuaje Lettering" loading="lazy">
+            <div class="card-caption"><span class="text-xs font-bold text-white block">Wasted Script</span><span class="text-[10px] text-gray-300">Lettering</span></div>
+          </div>
+          <div class="minislider-card" data-src="assets/images/tattoo-mascaras.png" data-title="Máscaras de Teatro en Cuello" data-desc="Clásico 'Smile Now, Cry Later' con volumen pétreo y contrastes teatrales." data-tag="Cuello">
+            <img src="assets/images/tattoo-mascaras.png" alt="Tatuaje Máscaras" loading="lazy">
+            <div class="card-caption"><span class="text-xs font-bold text-white block">Máscaras Teatro</span><span class="text-[10px] text-gray-300">Cuello</span></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
   </section>
 
   <!-- DUAL STUDIOS WITH GOOGLE MAPS SECTION -->
@@ -177,7 +232,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <!-- Section Header -->
-      <div class="text-center max-w-2xl mx-auto mb-14">
+      <div class="text-center max-w-2xl mx-auto mb-14 reveal">
         <span class="section-tag">Ubicaciones</span>
         <h2 class="font-serif text-2xl sm:text-4xl font-bold uppercase text-white mt-2">
           DOS ESTUDIOS PRIVADOS
@@ -191,7 +246,7 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         
         <!-- ESTUDIO 1: AVELLANEDA -->
-        <div class="studio-card p-6 sm:p-8 flex flex-col justify-between">
+        <div class="studio-card p-6 sm:p-8 flex flex-col justify-between reveal-left">
           <div>
             <div class="flex items-center justify-between gap-2 mb-4">
               <span class="text-xs font-bold uppercase tracking-wider text-gray-300">Sede 01</span>
@@ -254,7 +309,7 @@
         </div>
 
         <!-- ESTUDIO 2: VILLA ELISA -->
-        <div class="studio-card p-6 sm:p-8 flex flex-col justify-between">
+        <div class="studio-card p-6 sm:p-8 flex flex-col justify-between reveal-right">
           <div>
             <div class="flex items-center justify-between gap-2 mb-4">
               <span class="text-xs font-bold uppercase tracking-wider text-gray-300">Sede 02</span>
@@ -326,7 +381,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <!-- Header with Filters -->
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6 reveal">
         <div>
           <span class="section-tag">Portfolio</span>
           <h2 class="font-serif text-2xl sm:text-4xl font-bold uppercase text-white mt-2">
@@ -351,7 +406,7 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="galleryGrid">
         
         <!-- Item 1: Filigrana Manga -->
-        <div class="gallery-item group relative aspect-[3/4] cursor-pointer" 
+        <div class="gallery-item group relative aspect-[3/4] cursor-pointer reveal reveal-delay-1" 
              data-category="black-grey"
              data-src="assets/images/tattoo-filigrana.png"
              data-title="Manga Filigrana Ornamental"
@@ -366,7 +421,7 @@
         </div>
 
         <!-- Item 2: Anime Dark Hand -->
-        <div class="gallery-item group relative aspect-[3/4] cursor-pointer" 
+        <div class="gallery-item group relative aspect-[3/4] cursor-pointer reveal reveal-delay-2" 
              data-category="anime"
              data-src="assets/images/tattoo-anime-dark.png"
              data-title="Mano Demoníaca & Ojos Anime"
@@ -381,7 +436,7 @@
         </div>
 
         <!-- Item 3: Lettering Wasted -->
-        <div class="gallery-item group relative aspect-[3/4] cursor-pointer" 
+        <div class="gallery-item group relative aspect-[3/4] cursor-pointer reveal reveal-delay-3" 
              data-category="lettering"
              data-src="assets/images/tattoo-lettering.png"
              data-title="Lettering Custom 'Wasted'"
@@ -396,7 +451,7 @@
         </div>
 
         <!-- Item 4: Mascaras Cuello -->
-        <div class="gallery-item group relative aspect-[3/4] cursor-pointer" 
+        <div class="gallery-item group relative aspect-[3/4] cursor-pointer reveal reveal-delay-4" 
              data-category="blackwork"
              data-src="assets/images/tattoo-mascaras.png"
              data-title="Máscaras Teatro: Sonríe y Llora"
@@ -411,7 +466,7 @@
         </div>
 
         <!-- Item 5: Cuello Caligrafía & Líneas Rojas (NUEVO) -->
-        <div class="gallery-item group relative aspect-[3/4] cursor-pointer" 
+        <div class="gallery-item group relative aspect-[3/4] cursor-pointer reveal reveal-delay-1" 
              data-category="lettering"
              data-src="assets/images/tattoo-cuello-script.png"
              data-title="Script Anatómico en Cuello y Clavícula"
@@ -426,7 +481,7 @@
         </div>
 
         <!-- Item 6: Blackwork Cyber en Muñeca & Mano (NUEVO) -->
-        <div class="gallery-item group relative aspect-[3/4] cursor-pointer" 
+        <div class="gallery-item group relative aspect-[3/4] cursor-pointer reveal reveal-delay-2" 
              data-category="blackwork"
              data-src="assets/images/tattoo-muneca-blackwork.png"
              data-title="Cyber Tribal / Blackwork en Muñeca"
@@ -441,7 +496,7 @@
         </div>
 
         <!-- Item 7: Daga Biomecánica & Ojo (NUEVO) -->
-        <div class="gallery-item group relative aspect-[3/4] cursor-pointer" 
+        <div class="gallery-item group relative aspect-[3/4] cursor-pointer reveal reveal-delay-3" 
              data-category="black-grey"
              data-src="assets/images/tattoo-daga-biomecanica.png"
              data-title="Daga Biomecánica & Ojo Realista"
@@ -456,7 +511,7 @@
         </div>
 
         <!-- Item 8: Script 'Unforgettable' en Abdomen (NUEVO) -->
-        <div class="gallery-item group relative aspect-[3/4] cursor-pointer" 
+        <div class="gallery-item group relative aspect-[3/4] cursor-pointer reveal reveal-delay-4" 
              data-category="lettering"
              data-src="assets/images/tattoo-unforgettable.jpg"
              data-title="Lettering Cursivo 'Unforgettable'"
@@ -499,7 +554,7 @@
 
   <!-- ABOUT CABER / BIO SECTION -->
   <section id="sobre-mi" class="py-20 bg-surface border-t border-border">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6 reveal">
       
       <span class="section-tag">El Tatuador</span>
       <h2 class="font-serif text-2xl sm:text-4xl font-bold uppercase text-white">
@@ -512,15 +567,15 @@
 
       <!-- Key Commitments Grid -->
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 text-left">
-        <div class="p-5 rounded-xl bg-dark border border-border">
+        <div class="p-5 rounded-xl bg-dark border border-border reveal reveal-delay-1">
           <span class="text-xs font-bold text-gray-400 block mb-1 uppercase tracking-wider">01. Asesoramiento</span>
           <p class="text-xs text-gray-400 leading-relaxed">Definimos juntos el tamaño exacto, la colocación anatómica y el balance de sombras para que la pieza destaque.</p>
         </div>
-        <div class="p-5 rounded-xl bg-dark border border-border">
+        <div class="p-5 rounded-xl bg-dark border border-border reveal reveal-delay-2">
           <span class="text-xs font-bold text-gray-400 block mb-1 uppercase tracking-wider">02. Bioseguridad</span>
           <p class="text-xs text-gray-400 leading-relaxed">Agujas y cartuchos descartables sellados que se abren en tu presencia. Tintas homologadas y campo estéril.</p>
         </div>
-        <div class="p-5 rounded-xl bg-dark border border-border">
+        <div class="p-5 rounded-xl bg-dark border border-border reveal reveal-delay-3">
           <span class="text-xs font-bold text-gray-400 block mb-1 uppercase tracking-wider">03. Curación</span>
           <p class="text-xs text-gray-400 leading-relaxed">Te entrego las pautas completas de cicatrización y quedo a disposición por WhatsApp ante cualquier duda.</p>
         </div>
@@ -533,7 +588,7 @@
   <section id="cotizador" class="py-20">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="text-center max-w-xl mx-auto mb-10">
+      <div class="text-center max-w-xl mx-auto mb-10 reveal">
         <span class="section-tag">Agendá tu Turno</span>
         <h2 class="font-serif text-2xl sm:text-4xl font-bold uppercase text-white mt-2">
           COTIZÁ TU IDEA
@@ -544,7 +599,7 @@
       </div>
 
       <!-- Interactive Form Box -->
-      <div class="bg-surface p-6 sm:p-8 rounded-2xl border border-border space-y-6">
+      <div class="bg-surface p-6 sm:p-8 rounded-2xl border border-border space-y-6 reveal reveal-delay-1">
         
         <!-- Step 1: Studio -->
         <div>
@@ -649,7 +704,7 @@
   <section id="faq" class="py-20 bg-surface border-t border-border">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="text-center max-w-xl mx-auto mb-12">
+      <div class="text-center max-w-xl mx-auto mb-12 reveal">
         <span class="section-tag">Dudas Frecuentes</span>
         <h2 class="font-serif text-2xl sm:text-4xl font-bold uppercase text-white mt-2">
           PREGUNTAS HABITUALES
@@ -658,7 +713,7 @@
 
       <div class="space-y-3" id="faqAccordion">
         
-        <div class="faq-item p-5 rounded-xl">
+        <div class="faq-item p-5 rounded-xl reveal reveal-delay-1">
           <button class="faq-trigger flex items-center justify-between w-full text-left font-serif text-base sm:text-lg font-bold text-white">
             <span>¿Cómo se reserva un turno y cuál es la seña?</span>
             <span class="faq-icon text-gray-400 text-xl font-light">&plus;</span>
@@ -668,7 +723,7 @@
           </div>
         </div>
 
-        <div class="faq-item p-5 rounded-xl">
+        <div class="faq-item p-5 rounded-xl reveal reveal-delay-2">
           <button class="faq-trigger flex items-center justify-between w-full text-left font-serif text-base sm:text-lg font-bold text-white">
             <span>¿Cómo llegar a los estudios de Avellaneda y Villa Elisa?</span>
             <span class="faq-icon text-gray-400 text-xl font-light">&plus;</span>
@@ -678,7 +733,7 @@
           </div>
         </div>
 
-        <div class="faq-item p-5 rounded-xl">
+        <div class="faq-item p-5 rounded-xl reveal reveal-delay-3">
           <button class="faq-trigger flex items-center justify-between w-full text-left font-serif text-base sm:text-lg font-bold text-white">
             <span>¿Qué normas de higiene y bioseguridad se aplican?</span>
             <span class="faq-icon text-gray-400 text-xl font-light">&plus;</span>
@@ -688,7 +743,7 @@
           </div>
         </div>
 
-        <div class="faq-item p-5 rounded-xl">
+        <div class="faq-item p-5 rounded-xl reveal reveal-delay-4">
           <button class="faq-trigger flex items-center justify-between w-full text-left font-serif text-base sm:text-lg font-bold text-white">
             <span>¿Puedo llevar mi propia referencia o armamos el diseño juntos?</span>
             <span class="faq-icon text-gray-400 text-xl font-light">&plus;</span>
@@ -704,7 +759,7 @@
   </section>
 
   <!-- FOOTER -->
-  <footer class="bg-black py-10 border-t border-border text-gray-400 text-xs">
+  <footer class="bg-black py-10 border-t border-border text-gray-400 text-xs reveal">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
       
       <div class="flex items-center gap-3">
