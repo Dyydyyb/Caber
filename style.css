@@ -37,30 +37,29 @@
   padding: 0;
 }
 
-html {
+html, body {
   font-family: var(--font-sans);
   background-color: var(--bg-dark);
   color: var(--text-light);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   width: 100%;
+  max-width: 100%;
   margin: 0;
   padding: 0;
+  overflow-x: clip;
+  touch-action: pan-y;
 }
 
 body {
-  background-color: var(--bg-dark);
-  width: 100%;
   position: relative;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
+  min-height: 100vh;
 }
 
 #siteWrapper {
   width: 100%;
-  max-width: 100vw;
-  overflow-x: hidden;
+  max-width: 100%;
+  overflow-x: clip;
   position: relative;
 }
 
@@ -620,10 +619,6 @@ section, header, footer, main {
    ========================================================================== */
 * {
   -webkit-tap-highlight-color: transparent;
-}
-
-img {
-  content-visibility: auto;
 }
 
 .gallery-item, .studio-card, .coverflow-slide {
