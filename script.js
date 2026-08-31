@@ -40,35 +40,85 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // -------------------------------------------------------------
-  // 3. Portfolio Filters
+  // 3. Render Dynamic Gallery & Filter Buttons from TattooStore
   // -------------------------------------------------------------
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  const galleryItems = document.querySelectorAll('.gallery-item');
+  const galleryGrid = document.getElementById('galleryGrid');
+  const portfolioFilters = document.getElementById('portfolioFilters');
 
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+  const renderDynamicGallery = () => {
+    if (!galleryGrid || typeof TattooStore === 'undefined') return;
 
-      const filterValue = btn.getAttribute('data-filter');
+    const galleryTattoos = TattooStore.getGalleryTattoos();
+    galleryGrid.innerHTML = '';
 
-      galleryItems.forEach(item => {
-        const itemCategory = item.getAttribute('data-category');
-        if (filterValue === 'all' || itemCategory === filterValue) {
-          item.style.display = 'block';
-          item.style.opacity = '0';
-          item.style.transform = 'scale(0.95)';
-          setTimeout(() => {
-            item.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
-            item.style.opacity = '1';
-            item.style.transform = 'scale(1)';
-          }, 30);
-        } else {
-          item.style.display = 'none';
-        }
+    // Extract unique categories for filter tabs
+    const categoriesMap = new Map();
+    categoriesMap.set('all', 'Todos');
+
+    galleryTattoos.forEach((item, index) => {
+      if (item.category && item.categoryLabel) {
+        categoriesMap.set(item.category, item.categoryLabel);
+      }
+
+      const card = document.createElement('div');
+      card.className = `gallery-item group relative aspect-[3/4] cursor-pointer reveal reveal-delay-${(index % 4) + 1}`;
+      card.setAttribute('data-category', item.category || 'otros');
+      card.setAttribute('data-src', item.imageSrc);
+      card.setAttribute('data-title', item.title);
+      card.setAttribute('data-desc', item.description || '');
+      card.setAttribute('data-tag', item.categoryLabel || 'Tatuaje');
+
+      card.innerHTML = `
+        <img src="${item.imageSrc}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+        <div class="gallery-overlay">
+          <span class="tag-badge">${item.categoryLabel || 'Tatuaje'}</span>
+          <h3 class="font-serif text-base font-bold text-white mt-1">${item.title}</h3>
+          <p class="text-xs text-gray-300 line-clamp-1 mt-0.5">${item.description || ''}</p>
+        </div>
+      `;
+
+      card.addEventListener('click', () => {
+        openModal(item.imageSrc, item.title, item.description || '', item.categoryLabel || 'Tatuaje');
       });
+
+      galleryGrid.appendChild(card);
     });
-  });
+
+    // Update filter tabs
+    if (portfolioFilters) {
+      portfolioFilters.innerHTML = '';
+      categoriesMap.forEach((label, catKey) => {
+        const btn = document.createElement('button');
+        btn.className = `filter-btn ${catKey === 'all' ? 'active' : ''}`;
+        btn.setAttribute('data-filter', catKey);
+        btn.textContent = label;
+
+        btn.addEventListener('click', () => {
+          portfolioFilters.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          const allCards = galleryGrid.querySelectorAll('.gallery-item');
+          allCards.forEach(item => {
+            const itemCat = item.getAttribute('data-category');
+            if (catKey === 'all' || itemCat === catKey) {
+              item.style.display = 'block';
+              item.style.opacity = '0';
+              item.style.transform = 'scale(0.95)';
+              setTimeout(() => {
+                item.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+                item.style.opacity = '1';
+                item.style.transform = 'scale(1)';
+              }, 30);
+            } else {
+              item.style.display = 'none';
+            }
+          });
+        });
+
+        portfolioFilters.appendChild(btn);
+      });
+    }
+  };
 
   // -------------------------------------------------------------
   // 4. Lightbox Modal
@@ -102,16 +152,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.style.overflow = '';
   };
 
-  galleryItems.forEach(item => {
-    item.addEventListener('click', () => {
-      const src = item.getAttribute('data-src');
-      const title = item.getAttribute('data-title');
-      const desc = item.getAttribute('data-desc');
-      const tag = item.getAttribute('data-tag');
-      openModal(src, title, desc, tag);
-    });
-  });
-
   if (closeLightbox) {
     closeLightbox.addEventListener('click', closeModal);
   }
@@ -125,6 +165,9 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeModal();
   });
+
+  // Render initial dynamic gallery
+  renderDynamicGallery();
 
   // -------------------------------------------------------------
   // 5. Interactive Quotation & Booking Calculator
@@ -209,15 +252,46 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // -------------------------------------------------------------
-  // 7. 3D Coverflow Slider Logic
+  // 7. 3D Coverflow Slider Logic (con datos dinámicos de TattooStore)
   // -------------------------------------------------------------
   const coverflowSlider = document.getElementById('coverflowSlider');
-  const slides = document.querySelectorAll('.coverflow-slide');
   const prevBtn = document.getElementById('prevSlideBtn');
   const nextBtn = document.getElementById('nextSlideBtn');
   const dotsContainer = document.getElementById('sliderDots');
 
-  if (coverflowSlider && slides.length > 0) {
+  const initCoverflowFromStore = () => {
+    if (!coverflowSlider || typeof TattooStore === 'undefined') return;
+
+    const sliderTattoos = TattooStore.getSliderTattoos();
+    if (sliderTattoos.length === 0) return;
+
+    // Remove existing slides before rendering
+    const oldSlides = coverflowSlider.querySelectorAll('.coverflow-slide');
+    oldSlides.forEach(s => s.remove());
+
+    sliderTattoos.forEach((item, index) => {
+      const slide = document.createElement('div');
+      slide.className = 'coverflow-slide';
+      slide.setAttribute('data-index', index);
+      slide.setAttribute('data-src', item.imageSrc);
+      slide.setAttribute('data-title', item.title);
+      slide.setAttribute('data-desc', item.description || '');
+      slide.setAttribute('data-tag', item.categoryLabel || 'Tatuaje');
+
+      slide.innerHTML = `
+        <img src="${item.imageSrc}" alt="${item.title}">
+        <div class="slide-caption">
+          <span class="tag-badge">${item.categoryLabel || 'Tatuaje'}</span>
+          <h4 class="font-serif text-sm sm:text-base font-bold text-white mt-1">${item.title}</h4>
+        </div>
+      `;
+
+      coverflowSlider.appendChild(slide);
+    });
+
+    const slides = coverflowSlider.querySelectorAll('.coverflow-slide');
+    if (slides.length === 0) return;
+
     let currentIndex = 0;
     const totalSlides = slides.length;
     let autoPlayTimer = null;
@@ -289,19 +363,19 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     if (nextBtn) {
-      nextBtn.addEventListener('click', (e) => {
+      nextBtn.onclick = (e) => {
         e.stopPropagation();
         nextSlide();
         resetAutoPlay();
-      });
+      };
     }
 
     if (prevBtn) {
-      prevBtn.addEventListener('click', (e) => {
+      prevBtn.onclick = (e) => {
         e.stopPropagation();
         prevSlide();
         resetAutoPlay();
-      });
+      };
     }
 
     // Clicking a slide: if active, open modal; if side, advance to it
@@ -364,7 +438,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize
     updateSlider();
     startAutoPlay();
-  }
+  };
+
+  initCoverflowFromStore();
 
   // -------------------------------------------------------------
   // 8. Scroll Reveal Observer

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin &bull; Caber Tattoo Studio</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            dark: '#0a0a0c',
+            surface: '#121216',
+            border: '#23232a',
+            crimson: '#8b1e2f'
+          },
+          fontFamily: {
+            serif: ['Cinzel', 'serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .admin-card {
+      background: #121216;
+      border: 1px solid #23232a;
+      transition: all 0.25s ease;
+    }
+    .admin-card:hover {
+      border-color: #3f3f4a;
+      transform: translateY(-2px);
+    }
+    .switch-checkbox:checked + .switch-label {
+      background-color: #8b1e2f;
+    }
+    .switch-checkbox:checked + .switch-label .switch-dot {
+      transform: translateX(100%);
+    }
+  </style>
+</head>
+<body class="bg-dark text-gray-200 antialiased min-h-screen flex flex-col font-sans">
+
+  <!-- =========================================================================
+       LOGIN MODAL (PROTECCIÓN CON PIN)
+       ========================================================================= -->
+  <div id="loginScreen" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="max-w-md w-full p-8 rounded-3xl bg-surface border border-border text-center space-y-6 shadow-2xl">
+      <div class="w-16 h-16 mx-auto rounded-full overflow-hidden border border-white/20">
+        <img src="assets/images/caber-artist.png" alt="Caber Tattoo" class="w-full h-full object-cover">
+      </div>
+      <div>
+        <h1 class="font-serif text-2xl font-bold uppercase text-white tracking-wider">Caber Tattoo &bull; Admin</h1>
+        <p class="text-xs text-gray-400 mt-1">Ingresá tu PIN para gestionar el catálogo de tatuajes</p>
+      </div>
+
+      <form id="pinForm" class="space-y-4">
+        <div>
+          <input type="password" 
+                 id="inputPin" 
+                 placeholder="PIN de acceso" 
+                 maxlength="16"
+                 class="w-full py-3.5 px-4 text-center tracking-[0.3em] font-mono text-xl rounded-xl bg-dark border border-border text-white placeholder-gray-600 focus:outline-none focus:border-white transition-colors" 
+                 required 
+                 autofocus>
+          <p id="loginError" class="text-xs text-rose-400 mt-2 hidden">PIN incorrecto. Intentá nuevamente.</p>
+        </div>
+        <button type="submit" class="btn-primary w-full py-3.5 text-xs uppercase font-bold tracking-wider">
+          Ingresar al Panel
+        </button>
+      </form>
+
+      <div class="pt-4 border-t border-border/60">
+        <a href="index.html" class="text-xs text-gray-500 hover:text-gray-300 transition-colors inline-flex items-center gap-1.5">
+          <span>&larr;</span> Volver a la Landing de Caber
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       PANEL DE CONTROL PRINCIPAL
+       ========================================================================= -->
+  <div id="adminPanel" class="hidden flex-1 flex flex-col">
+    
+    <!-- Navbar Header -->
+    <header class="border-b border-border bg-surface/80 backdrop-blur sticky top-0 z-40">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        
+        <div class="flex items-center gap-3">
+          <img src="assets/images/caber-artist.png" alt="Caber" class="w-9 h-9 rounded-full object-cover border border-white/20">
+          <div>
+            <span class="font-serif font-bold text-sm text-white uppercase block leading-none">Caber Tattoo</span>
+            <span class="text-[10px] text-gray-400 uppercase tracking-widest">Panel de Control</span>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <button id="btnOpenAddModal" class="btn-primary py-2 px-4 text-xs font-bold uppercase tracking-wider flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+            <span>Nuevo Tatuaje</span>
+          </button>
+          <a href="index.html" target="_blank" class="p-2 rounded-lg bg-dark border border-border text-gray-400 hover:text-white transition-colors" title="Ver sitio web">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+          </a>
+          <button id="btnLogout" class="p-2 rounded-lg bg-dark border border-border text-gray-400 hover:text-rose-400 transition-colors" title="Cerrar sesión">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+          </button>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full space-y-8">
+      
+      <!-- Metrics & Quick Stats -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        <div class="p-5 rounded-2xl bg-surface border border-border">
+          <span class="text-[11px] font-bold uppercase text-gray-400 block tracking-wider">Total Tatuajes</span>
+          <span id="statTotal" class="text-3xl font-serif font-bold text-white mt-1 block">0</span>
+        </div>
+        <div class="p-5 rounded-2xl bg-surface border border-border">
+          <span class="text-[11px] font-bold uppercase text-emerald-400 block tracking-wider">En Slider 3D</span>
+          <span id="statSlider" class="text-3xl font-serif font-bold text-white mt-1 block">0</span>
+        </div>
+        <div class="p-5 rounded-2xl bg-surface border border-border">
+          <span class="text-[11px] font-bold uppercase text-indigo-400 block tracking-wider">En Galería</span>
+          <span id="statGallery" class="text-3xl font-serif font-bold text-white mt-1 block">0</span>
+        </div>
+        <div class="p-5 rounded-2xl bg-surface border border-border">
+          <span class="text-[11px] font-bold uppercase text-gray-400 block tracking-wider">Categorías Activas</span>
+          <span id="statCategories" class="text-3xl font-serif font-bold text-white mt-1 block">0</span>
+        </div>
+      </div>
+
+      <!-- Controls & Filter Toolbar -->
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 bg-surface p-4 rounded-2xl border border-border">
+        
+        <!-- Filter Tabs -->
+        <div class="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0" id="adminFilters">
+          <button class="filter-btn active text-xs py-1.5 px-3" data-filter="all">Todos</button>
+          <button class="filter-btn text-xs py-1.5 px-3" data-filter="slider">Solo Slider</button>
+          <button class="filter-btn text-xs py-1.5 px-3" data-filter="gallery">Solo Galería</button>
+        </div>
+
+        <!-- Utility Buttons -->
+        <div class="flex items-center gap-2 justify-end">
+          <button id="btnExportJSON" class="btn-outline text-xs py-2 px-3 rounded-lg flex items-center gap-1.5 hover:border-white" title="Descargar copia de seguridad en JSON">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+            <span>Copia de Respaldo</span>
+          </button>
+          <button id="btnResetDefault" class="text-xs text-gray-500 hover:text-rose-400 py-2 px-3 transition-colors" title="Restaurar las 8 fotos originales">
+            Restablecer Original
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Grid of Tattoos -->
+      <div id="tattoosGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <!-- Injected via JavaScript -->
+      </div>
+
+      <!-- Empty state -->
+      <div id="emptyState" class="hidden text-center py-16 p-8 bg-surface rounded-2xl border border-dashed border-border space-y-3">
+        <p class="text-gray-400 text-sm">No se encontraron tatuajes con el filtro seleccionado.</p>
+        <button id="btnEmptyAdd" class="btn-primary py-2.5 px-6 text-xs uppercase font-bold">Agregar primer tatuaje</button>
+      </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-border py-4 text-center text-xs text-gray-500 bg-surface/40">
+      Caber Tattoo &bull; Panel de Administración Privado
+    </footer>
+  </div>
+
+  <!-- =========================================================================
+       MODAL: AGREGAR / EDITAR TATUAJE
+       ========================================================================= -->
+  <div id="tattooModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-200">
+    <div class="max-w-xl w-full bg-surface border border-border rounded-3xl p-6 sm:p-8 space-y-6 max-h-[90vh] overflow-y-auto shadow-2xl">
+      
+      <div class="flex items-center justify-between border-b border-border pb-4">
+        <div>
+          <h2 id="modalTitle" class="font-serif text-xl font-bold uppercase text-white">Nuevo Tatuaje</h2>
+          <p class="text-xs text-gray-400 mt-0.5">Completá los datos y seleccioná dónde querés mostrar la pieza.</p>
+        </div>
+        <button id="btnCloseModal" class="w-8 h-8 rounded-full bg-dark border border-border text-gray-400 hover:text-white flex items-center justify-center text-lg">
+          &times;
+        </button>
+      </div>
+
+      <form id="tattooForm" class="space-y-5">
+        <input type="hidden" id="editTattooId">
+
+        <!-- Imagen del Tatuaje -->
+        <div class="space-y-2">
+          <label class="block text-xs font-bold uppercase tracking-wider text-gray-300">Fotografía del Tatuaje</label>
+          
+          <div class="flex flex-col sm:flex-row items-center gap-4">
+            <!-- Preview Box -->
+            <div class="w-32 h-40 rounded-xl overflow-hidden bg-dark border border-border flex items-center justify-center relative flex-shrink-0">
+              <img id="imagePreview" src="" alt="Vista previa" class="w-full h-full object-cover hidden">
+              <span id="previewPlaceholder" class="text-[10px] text-gray-600 text-center px-2">Sin foto cargada</span>
+            </div>
+
+            <!-- Upload Controls -->
+            <div class="flex-1 w-full space-y-3">
+              <div>
+                <label class="btn-outline text-xs py-2.5 px-4 rounded-xl cursor-pointer flex items-center justify-center gap-2 hover:border-white">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                  <span>Subir foto desde archivo</span>
+                  <input type="file" id="fileInput" accept="image/*" class="hidden">
+                </label>
+              </div>
+
+              <div>
+                <span class="text-[11px] text-gray-500 block mb-1">O ingresá la URL directa / ruta:</span>
+                <input type="text" 
+                       id="imageUrlInput" 
+                       placeholder="assets/images/foto.png o https://..." 
+                       class="w-full py-2 px-3 rounded-lg bg-dark border border-border text-xs text-white placeholder-gray-600 focus:outline-none focus:border-white">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Título -->
+        <div class="space-y-1.5">
+          <label for="tattooTitle" class="block text-xs font-bold uppercase tracking-wider text-gray-300">Título del Tatuaje</label>
+          <input type="text" 
+                 id="tattooTitle" 
+                 placeholder="Ej: Manga Filigrana Ornamental" 
+                 class="w-full py-2.5 px-3.5 rounded-xl bg-dark border border-border text-sm text-white placeholder-gray-600 focus:outline-none focus:border-white" 
+                 required>
+        </div>
+
+        <!-- Estilo / Categoría -->
+        <div class="space-y-1.5">
+          <label for="tattooCategory" class="block text-xs font-bold uppercase tracking-wider text-gray-300">Estilo / Categoría</label>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            <select id="tattooCategorySelect" class="py-2.5 px-3 rounded-xl bg-dark border border-border text-xs text-white focus:outline-none focus:border-white">
+              <option value="black-grey" data-label="Black & Grey">Black & Grey</option>
+              <option value="lettering" data-label="Lettering Custom">Lettering Custom</option>
+              <option value="neotribal" data-label="Neotribal / Cybersigilismo">Neotribal / Cybersigilismo</option>
+              <option value="dark-realism" data-label="Dark Realism">Dark Realism</option>
+              <option value="blackwork" data-label="Blackwork">Blackwork</option>
+              <option value="custom" data-label="Otro">+ Crear otra categoría...</option>
+            </select>
+            <input type="text" 
+                   id="customCategoryInput" 
+                   placeholder="Nombre de la nueva categoría" 
+                   class="hidden py-2.5 px-3.5 rounded-xl bg-dark border border-border text-xs text-white placeholder-gray-600 focus:outline-none focus:border-white">
+          </div>
+        </div>
+
+        <!-- Descripción -->
+        <div class="space-y-1.5">
+          <label for="tattooDesc" class="block text-xs font-bold uppercase tracking-wider text-gray-300">Descripción Técnica</label>
+          <textarea id="tattooDesc" 
+                    rows="2" 
+                    placeholder="Detalles sobre zona anatómica, técnica de agujas, sombreado o caligrafía..." 
+                    class="w-full py-2.5 px-3.5 rounded-xl bg-dark border border-border text-xs text-white placeholder-gray-600 focus:outline-none focus:border-white"></textarea>
+        </div>
+
+        <!-- Publicación Toggles -->
+        <div class="p-4 rounded-2xl bg-dark border border-border space-y-3">
+          <span class="block text-xs font-bold uppercase tracking-wider text-gray-300">¿Dónde querés mostrar este tatuaje?</span>
+          
+          <div class="flex items-center justify-between pt-1">
+            <div>
+              <span class="text-xs font-bold text-white block">Slider 3D (Hero Principal)</span>
+              <span class="text-[10px] text-gray-400">Aparecerá en el carrusel interactivo destacado de la portada</span>
+            </div>
+            <label class="relative inline-flex items-center cursor-pointer">
+              <input type="checkbox" id="checkSlider" class="sr-only switch-checkbox" checked>
+              <div class="w-11 h-6 bg-border rounded-full switch-label transition-colors">
+                <div class="w-5 h-5 bg-white rounded-full switch-dot transition-transform transform translate-x-0.5 mt-0.5"></div>
+              </div>
+            </label>
+          </div>
+
+          <div class="flex items-center justify-between pt-2 border-t border-border/60">
+            <div>
+              <span class="text-xs font-bold text-white block">Galería de Trabajos</span>
+              <span class="text-[10px] text-gray-400">Aparecerá en la sección de portfolio con filtro por estilo</span>
+            </div>
+            <label class="relative inline-flex items-center cursor-pointer">
+              <input type="checkbox" id="checkGallery" class="sr-only switch-checkbox" checked>
+              <div class="w-11 h-6 bg-border rounded-full switch-label transition-colors">
+                <div class="w-5 h-5 bg-white rounded-full switch-dot transition-transform transform translate-x-0.5 mt-0.5"></div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="flex items-center justify-end gap-3 pt-3 border-t border-border">
+          <button type="button" id="btnCancelModal" class="text-xs text-gray-400 hover:text-white py-2 px-4 transition-colors">
+            Cancelar
+          </button>
+          <button type="submit" class="btn-primary py-2.5 px-6 text-xs uppercase font-bold tracking-wider">
+            Guardar Tatuaje
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="tattoos-store.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>
